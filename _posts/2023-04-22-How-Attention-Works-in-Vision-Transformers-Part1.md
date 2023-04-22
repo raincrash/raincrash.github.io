@@ -17,12 +17,6 @@ At its core, the attention mechanism allows a model to learn which parts of the 
 
 In Vision Transformers, attention is computed between patches of the input image. These patches are flattened into a sequence of vectors, which are then processed by the Transformer architecture. The attention mechanism operates on pairs of vectors, calculating a weight for each pair based on their relevance to the output. This is done by computing a dot product between the vectors, which is then passed through a softmax function to obtain the weights.
 
-At a high level, attention is a way for a model to selectively focus on important parts of the input while ignoring irrelevant parts. This can be particularly useful in scenarios where the input is large or complex, such as when processing natural language or analyzing images.
-
-In most attention-based models, attention is implemented using a set of "queries" and "keys" that are used to calculate a set of "attention weights" for each element of the input. These attention weights represent how important each element of the input is for the model's current task.
-
-Once the attention weights have been calculated, the model uses them to generate a weighted sum of the input, with the weights acting as coefficients for each element. This weighted sum is then used as the input for the next layer of the model.
-
 ## Multi-Head Attention
 
 In order to improve the attention mechanism, Vision Transformers use a technique called multi-head attention. This involves computing several independent attention mechanisms in parallel, each with its own set of learned weights. The outputs of the different attention heads are concatenated and passed through a final linear layer to produce the final output.
