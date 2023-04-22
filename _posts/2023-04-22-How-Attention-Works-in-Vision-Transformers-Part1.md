@@ -4,9 +4,6 @@ title: "How Attention Works in Vision Transformers - Part 1"
 categories: ml
 ---
 
-# How Attention Works in Vision Transformers - Part 1
-
-
 In this blogpost, we'll explore how attention works in Vision Transformers(ViT) - [An image is worth 16x16 words: transformers for image recognition at scale](https://arxiv.org/abs/2010.11929), and how it differs from traditional convolutional neural network (CNN) approaches.
 
 ![ViT vs Classical Transformers](/assets/transformers/vit.png)
