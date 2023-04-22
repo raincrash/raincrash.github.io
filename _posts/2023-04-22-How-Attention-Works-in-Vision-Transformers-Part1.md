@@ -7,7 +7,9 @@ categories: ml
 # How Attention Works in Vision Transformers - Part 1
 
 
-In this blogpost, we'll explore how attention works in Vision Transformers and how it differs from traditional convolutional neural network (CNN) approaches.
+In this blogpost, we'll explore how attention works in Vision Transformers(ViT) - [An image is worth 16x16 words: transformers for image recognition at scale](https://arxiv.org/abs/2010.11929), and how it differs from traditional convolutional neural network (CNN) approaches.
+
+![ViT vs Classical Transformers](/assets/transformers/vit.png)
 
 Attention mechanisms have become a powerful tool in the world of deep learning. They allow models to selectively focus on important features and ignore irrelevant ones, resulting in more efficient and accurate predictions. The Transformer architecture, originally introduced in natural language processing (NLP) tasks, has recently been adapted for computer vision tasks as well, resulting in a new class of models called Vision Transformers (ViT).
 
