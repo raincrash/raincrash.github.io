@@ -53,8 +53,6 @@ The positional encoding is added to the patch embeddings before feeding them to 
 
 There are different ways to encode the position of the patches. One common approach is to use a sinusoidal function with different frequencies and phases for each position. The idea behind using a sinusoidal function is that it is a smooth function that can represent periodic signals. By using different frequencies and phases for each position, the model can learn to differentiate between patches based on their position.
 
-By adding the positional encoding to the patch embeddings, the ViT model is able to learn meaningful representations that take into account the spatial relationships between patches. This allows the model to achieve state-of-the-art performance on a variety of computer vision tasks without the need for handcrafted features.
-
 To sum up, Vision Transformers have proven to be a powerful architecture for image analysis tasks by leveraging attention mechanism, which enables the model to capture complex relationships between image patches. Moreover, techniques such as multi-head attention and positional encoding have further improved their performance.
 
 In the next post we will build a basic vision transformer (ViT) network in Pytorch.
