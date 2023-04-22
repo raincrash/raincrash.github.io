@@ -4,36 +4,15 @@ title: About
 permalink: /about/
 ---
 
+Hey there, I'm `Sricharan Chiruvolu` - but you can call me `Sri`.
 
-Hello there!
+I'm a `Munich`-based software engineer who specializes in `3D computer vision` and `machine learning`.
 
-My name is Sricharan Chiruvolu, but you can also call me _Sri_.
+Currently, I'm a `senior computer vision engineer` at [Sporttotal](). Previously, I was at [Meshcapade](), [Siemens]() and [Allianz]().
 
-I specialize in **computer vision**, **machine learning**, and creating **software solutions at scale**.
-
-Currently, I am based out of Munich, Germany.
-
-#### Work
-
-Every day, as a Senior Computer Vision Engineer at [Sporttotal](http://sporttotal.com/), I am driven by the mission to shape the future of sports content viewing through the Metaverse.
-
-I have held several positions as a software/computer vision engineer, including full time roles at [Meshcapade](), [SAP](), and [Runnr/Zomato](), as well as stints at [Siemens](), [Lexoro](), [Allianz](), and [TUM]().
-
-For a more detailed CV, please feel free to reach out to me via [email](mailto:sricharanchiruvolu@googlemail.com).
-
-#### Education
-
-I have a Master's degree in Computer Science (MSc Informatics) from the Technical University of Munich (TUM).
-
-#### Contact
-
-The best way to reach me would be via [email](mailto:sricharanchiruvolu@googlemail.com).
+I hold a master's degree in computer science from the `Technical University of Munich (TUM)`, majoring in computer vision and graphics.
 
 
-#### Social
+To get in touch, drop me an [email](mailto:sricharanchiruvolu@googlemail.com) (preferred) or connect with me on [twitter](https://twitter.com/srchrn), [linkedin](https://www.linkedin.com/in/sricharanchiruvolu/), [github](https://github.com/raincrash), [devpost](https://devpost.com/raincrash), or [speakerdeck](https://speakerdeck.com/raincrash).
 
-[Twitter](https://twitter.com/srchrn) | [LinkedIn](https://www.linkedin.com/in/sricharanchiruvolu/) | [Github](https://github.com/raincrash) | [Devpost](https://devpost.com/raincrash) | [Speakerdeck](https://speakerdeck.com/raincrash)
-
-#### Travel
-
-I sometimes post my travel pictures [here](https://www.instagram.com/roamingalongtheway/).
+And if you're curious about my travels, I sometimes post them [here](https://www.instagram.com/roamingalongtheway/).
