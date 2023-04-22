@@ -63,4 +63,4 @@ By adding the positional encoding to the patch embeddings, the ViT model is able
 
 To sum up, Vision Transformers have proven to be a powerful architecture for image analysis tasks by leveraging attention mechanism, which enables the model to capture complex relationships between image patches. Moreover, techniques such as multi-head attention and positional encoding have further improved their performance.
 
-In the next post we will walk you through the steps of building a basic vision transformer network in Pytorch.
+In the next post we will build a basic vision transformer (ViT) network in Pytorch.
