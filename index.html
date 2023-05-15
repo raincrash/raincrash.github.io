@@ -2,30 +2,35 @@
 layout: default
 ---
 
-<section>
+<style>
+  /* CSS styles */
+  .homepage-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    /* Updated */
+    font-size: 12px;
+    padding: 5px 0;
+  }
 
-    {% for post in site.posts %}
-    {% unless post.next %}
-    <h3 class="code">{{ post.date | date: '%Y' }}</h3>
-    {% else %}
-    {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
-    {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
-    {% if year != nyear %}
-    <h3 class="code">{{ post.date | date: '%Y' }}</h3>
-    {% endif %}
-    {% endunless %}
+  .homepage-links a {
+    color: #333;
+    text-decoration: none;
+    margin-right: 20px;
+    transition: all 0.3s ease-in-out;
+  }
 
-    <ul>
-        <li>
-            <div class="post-date code">
-                <span>{{ post.date | date: "%b %d" }}</span>
-            </div>
-            <div class="title">
-                <a href="{{ post.url | prepend: site.baseurl | prepend: site.url }}">{{ post.title }}</a>
-            </div>
-        </li>
-    </ul>
+  .homepage-links a:hover {
+    color: #007bff;
+  }
+</style>
 
-    {% endfor %}
+<body>
+  <!-- HTML code -->
+  <section class="homepage-links">
+    <a href="/about">About</a><a href="/blog">Blog</a> <!-- Updated -->
+  </section>
+</body>
 
-</section>
+</html>

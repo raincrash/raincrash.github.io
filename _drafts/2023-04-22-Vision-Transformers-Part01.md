@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How Attention Works in Vision Transformers - Part 1"
+title: "Vision Transformers - Part 1: How Attention Works with Images"
 categories: ml
 ---
 
