@@ -4,20 +4,21 @@ layout: default
 
 <style>
   /* CSS styles */
-  .homepage-links {
+  .homepage-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     /* Updated */
-    font-size: 12px;
-    padding: 5px 0;
+    font-size: 15px;
+    padding: 20px;
   }
 
   .homepage-links a {
     color: #333;
     text-decoration: none;
-    margin-right: 20px;
+    margin-bottom: 10px;
+    margin-right: 10px;
     transition: all 0.3s ease-in-out;
   }
 
@@ -28,8 +29,15 @@ layout: default
 
 <body>
   <!-- HTML code -->
-  <section class="homepage-links">
-    <a href="/about">About</a><a href="/blog">Blog</a> <!-- Updated -->
+  <section class="homepage-container">
+    <h1>Sricharan Chiruvolu</h1>
+    <small>3D Computer Vision | Machine Learning | Software Engineering
+    </small>
+    <br/>
+    <section class="homepage-links">
+      <a href="/about">About</a>
+      <a href="/blog">Blog</a>
+    </section>
   </section>
 </body>
 
