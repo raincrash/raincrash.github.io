@@ -4,15 +4,21 @@ title: About
 permalink: /about/
 ---
 
-Hey there, I'm `Sricharan Chiruvolu` - but you can call me `Sri`.
+Hello there! 
 
-I'm a `Munich`-based software engineer who specializes in `3D computer vision` and `machine learning`.
-
-Currently, I'm a `Senior Computer Vision Engineer` at [Sporttotal](). Previously, I was at [Meshcapade](), [SAP]() and [Runnr/Zomato]().
-
-I hold a master's degree in computer science from the `Technical University of Munich (TUM)`, majoring in computer vision and graphics. During this time, I interned at [Siemens]() (3D Computer Vision) and [Allianz]() (Enterprise Architecture).
+I'm **Sricharan Chiruvolu** (you can call me **Sri**), a software engineer based in *Munich*. My expertise lies in **3D Computer Vision**, **Digital Humans**, and **Machine Learning**, and I enjoy building scalable data products.
 
 
-To get in touch, drop me an [email](mailto:sricharanchiruvolu@googlemail.com) (preferred) or connect with me on [twitter](https://twitter.com/srchrn), [linkedin](https://www.linkedin.com/in/sricharanchiruvolu/), [github](https://github.com/raincrash), [devpost](https://devpost.com/raincrash), or [speakerdeck](https://speakerdeck.com/raincrash).
+I hold a master's degree in computer science from the *Technical University of Munich (TUM)*, specializing in computer vision and graphics.
 
-<!-- And if you're curious about my travels, I sometimes post them [here](https://www.instagram.com/roamingalongtheway/). -->
+
+I'm always open to ☕, discussions and collaborations. Feel free to reach out to me via [email](mailto:sricharanchiruvolu@googlemail.com) (my preferred method) or connect with me on various platforms:
+
+- [Twitter](https://twitter.com/srchrn)
+- [LinkedIn](https://www.linkedin.com/in/sricharanchiruvolu/)
+- [GitHub](https://github.com/raincrash)
+- [Devpost](https://devpost.com/raincrash)
+- [SpeakerDeck](https://speakerdeck.com/raincrash)
+
+
+
