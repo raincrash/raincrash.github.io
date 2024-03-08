@@ -16,10 +16,11 @@ published: true
 
     <div id="content">
         {{ content }}
-        {% if page.comments %}
-        {% include disqus.html %}
-        {% endif %}
     </div>
+
+{% if page.comments %}
+{% include disqus.html %}
+{% endif %}
 
     {% include footer.html %}
 
