@@ -4,8 +4,6 @@ title: About
 permalink: /about/
 ---
 
-![Sricharan Chiruvolu](/assets/sri.jpg)
-
 Hello there!
 
 I'm **Sricharan Chiruvolu** (you can call me **Sri**), a software engineer based in `Munich, Germany`. My expertise lies in **3D Computer Vision**, **Digital Humans**, and **Machine Learning**, and I enjoy building scalable data products.
@@ -21,6 +19,3 @@ I'm always open to ☕, discussions 💬 and collaborations 🔗. Feel free to r
 - [GitHub](https://github.com/raincrash)
 - [Devpost](https://devpost.com/raincrash)
 - [SpeakerDeck](https://speakerdeck.com/raincrash)
-
-
-
