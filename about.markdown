@@ -6,7 +6,7 @@ permalink: /about/
 
 Hello there!
 
-I'm **Sricharan Chiruvolu** (you can call me **Sri**), a software engineer based in `Munich, Germany`. My expertise lies in **3D Computer Vision**, **Digital Humans**, and **Machine Learning**, and I enjoy building scalable data products.
+I'm **Sricharan Chiruvolu** (you can call me **Sri**), a AI research engineer based in `Munich, Germany`. My expertise lies in **3D Computer Vision**, **Digital Humans**, and **Machine Learning**, and I enjoy building scalable data products.
 
 
 I have a master's degree in computer science from the Technical University of Munich (TUM), specializing in computer vision and graphics.
