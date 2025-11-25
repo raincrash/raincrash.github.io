@@ -4,12 +4,17 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+Hi there! I'm Sricharan Chiruvolu (Sri), an AI Research Engineer based in Munich, Germany. My expertise is in computer vision, 3D reconstruction, and generative modeling, where I develop scalable machine learning solutions that bridge cutting-edge research with real-world applications.
 
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jglovier" %} /
-[jekyll-new](https://github.com/jglovier/jekyll-new)
+With experience across startups and large enterprises, I've worked on a wide range of projects, from sports analytics to virtual avatars for workplace learning, as well as full-body avatars in fashion and AR/VR. I hold a Master's degree in Computer Science from the Technical University of Munich (TUM), specializing in computer vision and graphics.
 
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+I’m always open to interesting discussions over coffee ☕ or exploring potential collaborations. Let’s connect:
+
+✉️ `sricharanchiruvolu@googlemail.com`
+
+Alternatively:
+- [LinkedIn](https://www.linkedin.com/in/sricharanchiruvolu/)
+- [Twitter](https://twitter.com/srchrn)
+- [GitHub](https://github.com/raincrash)
+- [Devpost](https://devpost.com/raincrash)
+- [SpeakerDeck](https://speakerdeck.com/raincrash)
