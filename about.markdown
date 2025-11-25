@@ -4,9 +4,11 @@ title: About
 permalink: /about/
 ---
 
-Hi there! I'm Sricharan Chiruvolu (Sri), an AI Research Engineer based in Munich, Germany. My expertise is in computer vision, 3D reconstruction, and generative modeling, where I develop scalable machine learning solutions that bridge cutting-edge research with real-world applications.
+Hi, I’m Sricharan Chiruvolu (Sri). I’m an AI Research Engineer in Munich working on computer vision, 3D reconstruction, and generative modeling. 
 
-With experience across startups and large enterprises, I've worked on a wide range of projects, from sports analytics to virtual avatars for workplace learning, as well as full-body avatars in fashion and AR/VR. I hold a Master's degree in Computer Science from the Technical University of Munich (TUM), specializing in computer vision and graphics.
+I build scalable systems for AI products, and currently lead avatar research at `Beyond Presence`. Previously, I worked with Colossyan, Meshcapade, Siemens, SAP, and Zomato.
+
+Master’s in Computer Science from TUM.
 
 I’m always open to interesting discussions over coffee ☕ or exploring potential collaborations. Let’s connect:
 
