@@ -1,52 +1,49 @@
 ---
 layout: default
-support: [jquery, gallery]
 ---
 
 <style>
-  .gallery-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 0.82rem;
-    letter-spacing: 0.05em;
+  .trip-back {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #888;
+    color: #999;
     text-decoration: none;
     margin-bottom: 1.2rem;
-    transition: color 0.18s;
+    transition: color 0.15s;
   }
 
-  .gallery-back:hover { color: #222; }
+  .trip-back:hover { color: #111; text-decoration: none; }
 
-  .gallery-page-header {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 1.5rem 1.2rem 0;
-  }
-
-  .gallery-page-header h1 {
-    font-size: 1.7rem;
+  .trip-page-title {
+    font-size: 1.8rem;
     font-weight: 700;
-    letter-spacing: -0.02em;
-    margin: 0 0 0.6rem;
+    letter-spacing: -0.03em;
+    margin: 0 0 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e8e8e8;
   }
 
-  .gallery-page-header .gallery-desc {
+  /* Style the description paragraph that precedes the photo grid */
+  .trip-content > p:first-of-type {
     color: #555;
     font-size: 0.95rem;
     line-height: 1.7;
-    max-width: 640px;
-    margin-bottom: 1.8rem;
+    max-width: 580px;
+    margin-bottom: 0;
   }
 
-  .gallery-page-header .gallery-desc p { margin: 0 0 0.5rem; }
-  .gallery-page-header .gallery-desc a { color: #333; }
+  .trip-content > p:first-of-type a {
+    color: #333;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 </style>
 
-<div class="gallery-page-header">
-  <a class="gallery-back" href="{{ site.baseurl }}/photography">&#8592; Photography</a>
-  <h1>{{ page.title }}</h1>
+<a class="trip-back" href="{{ site.baseurl }}/photography">← Photography</a>
+<h1 class="trip-page-title">{{ page.title }}</h1>
+<div class="trip-content">
+  {{ content }}
 </div>
-
-{{ content }}
