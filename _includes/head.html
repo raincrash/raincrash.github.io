@@ -21,7 +21,13 @@
   <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.author_name }}" href="{{ site.url }}{{ site.baseurl }}/feed.xml">
 
-  {% if page.support contains 'mathjax' %}
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  {% if site.mathjax or page.mathjax %}
+  <script>
+    MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
   {% endif %}
 </head>
