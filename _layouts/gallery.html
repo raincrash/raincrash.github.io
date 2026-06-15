@@ -3,6 +3,50 @@ layout: default
 support: [jquery, gallery]
 ---
 
-<h1 class="gallery-title">{{ page.title }}</h1>
+<style>
+  .gallery-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #888;
+    text-decoration: none;
+    margin-bottom: 1.2rem;
+    transition: color 0.18s;
+  }
+
+  .gallery-back:hover { color: #222; }
+
+  .gallery-page-header {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1.5rem 1.2rem 0;
+  }
+
+  .gallery-page-header h1 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.6rem;
+  }
+
+  .gallery-page-header .gallery-desc {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 640px;
+    margin-bottom: 1.8rem;
+  }
+
+  .gallery-page-header .gallery-desc p { margin: 0 0 0.5rem; }
+  .gallery-page-header .gallery-desc a { color: #333; }
+</style>
+
+<div class="gallery-page-header">
+  <a class="gallery-back" href="{{ site.baseurl }}/photography">&#8592; Photography</a>
+  <h1>{{ page.title }}</h1>
+</div>
 
 {{ content }}

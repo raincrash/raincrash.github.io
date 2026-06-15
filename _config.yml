@@ -26,6 +26,8 @@ description: >- # this means to ignore newlines until "baseurl:"
   Random Tech Musings from Sricharan Chiruvolu
 author_name:        "Sricharan Chiruvolu" # change this to your name
 logo_url:           https://avatars.githubusercontent.com/u/9132273?v=4 # Get it from GitHub API: https://api.github.com/users/<username>
+github_username:    raincrash
+twitter_username:   srchrn
 
 # Site Settings
 # baseurl: "" # the subpath of your site, e.g. /blog

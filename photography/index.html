@@ -4,35 +4,152 @@ title: Photography
 permalink: /photography/
 ---
 
-<h1>{{ page.title }}</h1>
+<style>
+  .photo-index {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.2rem 4rem;
+  }
 
-<p>
-  I recently discovered a love for photography, and this is a place where I share some of the photos I’ve taken along the way. I currently shoot with a Fujifilm X-T50, along with the XF 16–50mm, XF 35mm f/2, XF 70–300mm, and Samyang 12mm f/2 lenses. I also use my iPhone 17 Pro for everyday photography.
-</p>
-  
-  <p>You can also follow more of my work on <a
-    href="https://instagram.com/shots.by.sri" target="_blank">Instagram</a>.</p>
+  .photo-index h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+  }
 
-<!-- 
-{% assign count = 0 %}
-{% assign align = "left" %}
-{% for gallery in site.data.galleries.overview %}
-{% if count == 0 %}<div class="row">{% endif %}
-  <div class="half-width gallery-preview {{ align }}">
-    <h1>{{ gallery.title }}</h1>
-    <a href="{{ site.url }}{{ site.baseurl }}/photography/{{ gallery.directory }}.html">
-      <img alt="{{ gallery.title }}" src="{{ site.url }}{{ site.baseurl }}/assets/photography/{% if gallery.picture_path %}{{ gallery.picture_path }}{% else %}{{ gallery.directory }}{% endif %}/{{ gallery.preview.thumbnail }}" />
-    </a>
+  .photo-intro {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 640px;
+    margin-bottom: 0.6rem;
+  }
+
+  .photo-intro a {
+    color: #333;
+  }
+
+  .photo-instagram {
+    font-size: 0.88rem;
+    color: #888;
+    margin-bottom: 2.5rem;
+  }
+
+  .photo-instagram a {
+    color: #555;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* ── Gallery grid ── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .gallery-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    background: #f0f0f0;
+    aspect-ratio: 4 / 3;
+  }
+
+  .gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .gallery-card:hover img {
+    transform: scale(1.06);
+  }
+
+  .gallery-card-label {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, transparent 55%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.1rem;
+    opacity: 0;
+    transition: opacity 0.28s ease;
+  }
+
+  .gallery-card:hover .gallery-card-label {
+    opacity: 1;
+  }
+
+  .gallery-card-title {
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  /* Always-visible title below the card (fallback / accessibility) */
+  .gallery-card-name {
+    margin-top: 0.5rem;
+    font-size: 0.88rem;
+    color: #444;
+    font-weight: 500;
+  }
+
+  .gallery-entry {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Empty state ── */
+  .gallery-empty {
+    color: #999;
+    font-size: 0.9rem;
+    padding: 2rem 0;
+  }
+</style>
+
+<div class="photo-index">
+  <h1>{{ page.title }}</h1>
+
+  <p class="photo-intro">
+    I recently discovered a love for photography, and this is a place where I share some of the photos I've taken along the way. I currently shoot with a <strong>Fujifilm X-T50</strong>, along with the XF 16–50mm, XF 35mm f/2, XF 70–300mm, and Samyang 12mm f/2 lenses. I also use my iPhone 17 Pro for everyday photography.
+  </p>
+
+  <p class="photo-instagram">
+    Follow more of my work on
+    <a href="https://instagram.com/shots.by.sri" target="_blank" rel="noopener">Instagram @shots.by.sri</a>.
+  </p>
+
+  {% assign galleries = site.data.galleries.overview %}
+  {% if galleries.size > 0 %}
+  <div class="gallery-grid">
+    {% for gallery in galleries %}
+    {% assign gallery_data = site.data.galleries[gallery.directory] %}
+    <div class="gallery-entry">
+      <a class="gallery-card"
+         href="{{ site.baseurl }}/photography/{{ gallery.directory }}.html">
+        <img
+          src="{{ site.baseurl }}/assets/photography/{% if gallery.picture_path %}{{ gallery.picture_path }}{% else %}{{ gallery.directory }}{% endif %}/{{ gallery.preview.thumbnail }}"
+          alt="{{ gallery.title }}"
+          loading="lazy"
+        />
+        <div class="gallery-card-label">
+          <p class="gallery-card-title">{{ gallery.title }}</p>
+        </div>
+      </a>
+      <p class="gallery-card-name">{{ gallery.title }}{% if gallery_data.pictures %} &middot; {{ gallery_data.pictures | size }} photos{% endif %}</p>
+    </div>
+    {% endfor %}
   </div>
-{% if count == 1 %}</div>{% endif %}
-{% assign count = count | plus: 1 %}
-{% assign align = "right" %}
-{% if count >= 2 %}
-{% assign align = "left" %}
-{% assign count = 0 %}
-{% endif %}
-{% endfor %}
-
-{% if count != 1 %}
+  {% else %}
+  <p class="gallery-empty">No galleries yet — add entries to <code>_data/galleries/overview.yml</code>.</p>
+  {% endif %}
 </div>
-{% endif %} -->

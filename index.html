@@ -2,22 +2,74 @@
 layout: default
 ---
 
-<div class="home">
+<style>
+  .home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
 
-  <h1 class="page-heading">Posts</h1>
+  .home-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e0e0e0;
+    margin-bottom: 1.5rem;
+  }
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+  .home-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.4rem;
+  }
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+  .home-tagline {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0 0 2rem;
+    max-width: 380px;
+    line-height: 1.6;
+  }
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+  .home-links {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-</div>
+  .home-links a {
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #333;
+    padding: 0.45rem 1.1rem;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    transition: background 0.18s, color 0.18s, border-color 0.18s;
+  }
+
+  .home-links a:hover {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: #1a1a1a;
+  }
+</style>
+
+<section class="home">
+  <img class="home-avatar" src="/assets/profile.gif" alt="Sricharan Chiruvolu" />
+  <h1 class="home-name">Sricharan Chiruvolu</h1>
+  <p class="home-tagline">AI Research Engineer · Computer Vision · Munich</p>
+  <nav class="home-links">
+    <a href="/about">About</a>
+    <a href="/blog">Blog</a>
+    <a href="/photography">Photography</a>
+  </nav>
+</section>
