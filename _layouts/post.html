@@ -1,15 +1,129 @@
 ---
 layout: default
 ---
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+<style>
+  .post-wrap {
+    max-width: 660px;
+  }
+
+  .post-header {
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .post-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin: 0 0 0.6rem;
+  }
+
+  .post-meta {
+    font-size: 0.82rem;
+    color: #aaa;
+    margin: 0;
+  }
+
+  .post-content {
+    font-size: 1.02rem;
+    line-height: 1.8;
+    color: #1a1a1a;
+  }
+
+  .post-content p { margin-bottom: 1.3rem; }
+
+  .post-content h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 2.5rem 0 0.75rem;
+  }
+
+  .post-content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 2rem 0 0.6rem;
+  }
+
+  .post-content a {
+    color: #111;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .post-content img {
+    border-radius: 4px;
+    margin: 1rem 0;
+  }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: 1.4em;
+    margin-bottom: 1.3rem;
+  }
+
+  .post-content li { margin-bottom: 0.35rem; }
+
+  .post-content blockquote {
+    border-left: 3px solid #e0e0e0;
+    padding-left: 1.2rem;
+    color: #666;
+    margin: 1.5rem 0;
+  }
+
+  .post-content pre {
+    background: #f8f8f8;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 1.1rem 1.3rem;
+    overflow-x: auto;
+    margin-bottom: 1.3rem;
+  }
+
+  .post-content code {
+    font-size: 0.88em;
+    background: #f4f4f4;
+    border: 1px solid #eee;
+    padding: 2px 5px;
+    border-radius: 3px;
+  }
+
+  .post-content pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.87em;
+  }
+
+  .post-back {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #999;
+    text-decoration: none;
+    margin-bottom: 1.4rem;
+    transition: color 0.15s;
+  }
+
+  .post-back:hover { color: #111; text-decoration: none; }
+</style>
+
+<div class="post-wrap">
+  <a class="post-back" href="{{ site.baseurl }}/blog">← Blog</a>
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+    </p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
     {{ content }}
   </div>
-
-</article>
+</div>

@@ -1,0 +1,5 @@
+# Local dev overrides — not committed to production
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+remote_theme: ""

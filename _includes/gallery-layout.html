@@ -1,35 +1,189 @@
-<div id="image-gallery{% if include.id_number %}-{{ include.id_number }}{% endif %}" class="image-gallery">
-  <div id="gallery-sizer{% if include.id_number %}-{{ include.id_number }}{% endif %}" class="gallery-sizer"></div>
-  {% for picture in include.gallery.pictures %}
-  <div class="image-wrapper">
-    <a href="{{ site.url }}{{ site.baseurl }}/assets/photography/{{ include.gallery.picture_path }}/{{ picture.original }}"
-    data-responsive="{% for size in picture.sizes %} {{ site.url}}{{ site.baseurl }}/assets/photography/{{ include.gallery.picture_path }}/{{ size }} {{ size | split: '-' | last | split: '.' | first | split: 'x' | first | strip }}{% unless forloop.last %},{% endunless %}{% endfor %}" class="image"
-    {% if picture.title %} data-sub-html="<div class='lg-toolbar caption'><h4>{{ picture.title | escape }}</h4>{% if picture.caption %}<p>{{ picture.caption | escape }}</p>{% endif %}</div>"{% endif %}>
-      <img alt="{{ picture.title }}" src="{{ site.url }}{{ site.baseurl }}/assets/photography/{{ include.gallery.picture_path }}/{{ picture.thumbnail }}" />
-    </a>
-  </div>
+{% assign gallery = include.gallery %}
+{% assign base = site.baseurl %}
+{% assign path = gallery.picture_path %}
+
+<div class="trip-photos">
+  {% for photo in gallery.pictures %}
+  {% assign src   = base | append: "/assets/photography/" | append: path | append: "/" | append: photo.original %}
+  {% assign thumb = base | append: "/assets/photography/" | append: path | append: "/" | append: photo.thumbnail %}
+  {% assign cap   = photo.caption | default: photo.title | default: "" %}
+  <figure
+    class="trip-photo"
+    data-src="{{ src }}"
+    data-caption="{{ cap | escape }}"
+    tabindex="0"
+    role="button"
+    aria-label="View {{ photo.title | default: 'photo' }}"
+  >
+    <img src="{{ thumb }}" alt="{{ photo.title | default: '' }}" loading="lazy" />
+  </figure>
   {% endfor %}
 </div>
 
+<!-- Lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button class="lb-close" id="lb-close" aria-label="Close">&#x2715;</button>
+  <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">&#8249;</button>
+  <button class="lb-nav lb-next" id="lb-next" aria-label="Next">&#8250;</button>
+  <div class="lb-stage">
+    <img class="lb-img" id="lb-img" src="" alt="" />
+    <p class="lb-caption" id="lb-caption"></p>
+  </div>
+</div>
+
+<style>
+  .trip-photos {
+    columns: 3;
+    column-gap: 8px;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 700px) { .trip-photos { columns: 2; } }
+  @media (max-width: 420px) { .trip-photos { columns: 1; } }
+
+  .trip-photo {
+    break-inside: avoid;
+    margin: 0 0 8px;
+    cursor: zoom-in;
+    overflow: hidden;
+    background: #f0f0f0;
+  }
+
+  .trip-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: opacity 0.2s;
+  }
+
+  .trip-photo:hover img { opacity: 0.88; }
+  .trip-photo:focus { outline: 2px solid #111; outline-offset: 2px; }
+
+  /* Lightbox */
+  .lb {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.94);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+
+  .lb[hidden] { display: none; }
+
+  .lb-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 960px;
+    width: 100%;
+  }
+
+  .lb-img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    display: block;
+  }
+
+  .lb-caption {
+    margin: 1rem 0 0;
+    color: rgba(255,255,255,0.55);
+    font-size: 0.82rem;
+    text-align: center;
+    min-height: 1.2em;
+  }
+
+  .lb-close {
+    position: fixed;
+    top: 1.2rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.6);
+    font-size: 1.6rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px 8px;
+    z-index: 10001;
+    transition: color 0.15s;
+    font-family: inherit;
+  }
+
+  .lb-close:hover { color: #fff; }
+
+  .lb-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.45);
+    font-size: 3.5rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    z-index: 10001;
+    line-height: 1;
+    transition: color 0.15s;
+    user-select: none;
+    font-family: inherit;
+  }
+
+  .lb-nav:hover { color: rgba(255,255,255,0.9); }
+  .lb-prev { left: 0.5rem; }
+  .lb-next { right: 0.5rem; }
+
+  @media (max-width: 500px) {
+    .lb-nav { display: none; }
+    .lb { padding: 1rem; }
+  }
+</style>
+
 <script>
-$(document).ready(function() {
-  var $gallery{% if include.id_number %}{{ include.id_number }}{% endif %} = $("#image-gallery{% if include.id_number %}-{{ include.id_number }}{% endif %}").lightGallery({
-    thumbnail: false,
-    selector: '.image'
+(function () {
+  var photos = Array.from(document.querySelectorAll('.trip-photo'));
+  var lb     = document.getElementById('lb');
+  var lbImg  = document.getElementById('lb-img');
+  var lbCap  = document.getElementById('lb-caption');
+  var idx    = 0;
+
+  function open(i) {
+    idx = ((i % photos.length) + photos.length) % photos.length;
+    var el = photos[idx];
+    lbImg.src = el.getAttribute('data-src');
+    lbImg.alt = el.getAttribute('data-caption') || '';
+    lbCap.textContent = el.getAttribute('data-caption') || '';
+    lb.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lb.setAttribute('hidden', '');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  photos.forEach(function (el, i) {
+    el.addEventListener('click', function () { open(i); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+    });
   });
-});
 
-// init isotope
-var $grid{% if include.id_number %}{{ include.id_number }}{% endif %} = $('#image-gallery{% if include.id_number %}-{{ include.id_number }}{% endif %}').isotope({
-  percentPosition: true,
-  columnWidth: '#gallery-sizer{% if include.id_number %}-{{ include.id_number }}{% endif %}',
-  itemSelector: '.image-wrapper',
-  layoutMode: "masonry"
-});
+  document.getElementById('lb-close').addEventListener('click', close);
+  document.getElementById('lb-prev').addEventListener('click', function () { open(idx - 1); });
+  document.getElementById('lb-next').addEventListener('click', function () { open(idx + 1); });
 
-// layout Isotope after each image loads
-$grid{% if include.id_number %}{{ include.id_number }}{% endif %}.imagesLoaded().progress( function() {
-  $grid{% if include.id_number %}{{ include.id_number }}{% endif %}.masonry();
-});
+  lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
 
+  document.addEventListener('keydown', function (e) {
+    if (lb.hasAttribute('hidden')) return;
+    if (e.key === 'Escape')     close();
+    if (e.key === 'ArrowLeft')  open(idx - 1);
+    if (e.key === 'ArrowRight') open(idx + 1);
+  });
+})();
 </script>

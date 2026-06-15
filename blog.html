@@ -1,0 +1,85 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+
+<style>
+  .blog-header {
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .blog-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0;
+  }
+
+  .year-group { margin-bottom: 2.5rem; }
+
+  .year-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .post-row:first-child { border-top: 1px solid #f0f0f0; }
+
+  .post-date {
+    font-size: 0.8rem;
+    color: #aaa;
+    white-space: nowrap;
+    min-width: 52px;
+  }
+
+  .post-row a {
+    font-size: 1rem;
+    color: #222;
+    text-decoration: none;
+  }
+
+  .post-row a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .blog-empty { color: #999; font-size: 0.95rem; }
+</style>
+
+<div class="blog-header">
+  <h1>Blog</h1>
+</div>
+
+{% if site.posts.size == 0 %}
+<p class="blog-empty">No posts yet.</p>
+{% else %}
+  {% assign current_year = "" %}
+  {% for post in site.posts %}
+    {% assign post_year = post.date | date: "%Y" %}
+    {% if post_year != current_year %}
+      {% unless forloop.first %}</div>{% endunless %}
+      {% assign current_year = post_year %}
+      <div class="year-group">
+      <p class="year-label">{{ post_year }}</p>
+    {% endif %}
+    <div class="post-row">
+      <span class="post-date">{{ post.date | date: "%b %d" }}</span>
+      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+    </div>
+    {% if forloop.last %}</div>{% endif %}
+  {% endfor %}
+{% endif %}

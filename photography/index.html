@@ -4,35 +4,117 @@ title: Photography
 permalink: /photography/
 ---
 
-<h1>{{ page.title }}</h1>
+<style>
+  .photo-header {
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid #e8e8e8;
+  }
 
-<p>
-  I recently discovered a love for photography, and this is a place where I share some of the photos I’ve taken along the way. I currently shoot with a Fujifilm X-T50, along with the XF 16–50mm, XF 35mm f/2, XF 70–300mm, and Samyang 12mm f/2 lenses. I also use my iPhone 17 Pro for everyday photography.
-</p>
-  
-  <p>You can also follow more of my work on <a
-    href="https://instagram.com/shots.by.sri" target="_blank">Instagram</a>.</p>
+  .photo-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 0.6rem;
+  }
 
-<!-- 
-{% assign count = 0 %}
-{% assign align = "left" %}
-{% for gallery in site.data.galleries.overview %}
-{% if count == 0 %}<div class="row">{% endif %}
-  <div class="half-width gallery-preview {{ align }}">
-    <h1>{{ gallery.title }}</h1>
-    <a href="{{ site.url }}{{ site.baseurl }}/photography/{{ gallery.directory }}.html">
-      <img alt="{{ gallery.title }}" src="{{ site.url }}{{ site.baseurl }}/assets/photography/{% if gallery.picture_path %}{{ gallery.picture_path }}{% else %}{{ gallery.directory }}{% endif %}/{{ gallery.preview.thumbnail }}" />
-    </a>
-  </div>
-{% if count == 1 %}</div>{% endif %}
-{% assign count = count | plus: 1 %}
-{% assign align = "right" %}
-{% if count >= 2 %}
-{% assign align = "left" %}
-{% assign count = 0 %}
-{% endif %}
-{% endfor %}
+  .photo-header p {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    max-width: 560px;
+    margin: 0 0 0.4rem;
+  }
 
-{% if count != 1 %}
+  .photo-header .instagram-link {
+    font-size: 0.85rem;
+    color: #888;
+  }
+
+  .photo-header .instagram-link a {
+    color: #555;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* ── Trip grid ── */
+  .trip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem 1.5rem;
+  }
+
+  .trip-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .trip-card:hover { text-decoration: none; }
+
+  .trip-thumb {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: #f0f0f0;
+    margin-bottom: 0.75rem;
+  }
+
+  .trip-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .trip-card:hover .trip-thumb img { transform: scale(1.04); }
+
+  .trip-title {
+    font-size: 0.97rem;
+    font-weight: 600;
+    color: #111;
+    margin: 0 0 0.2rem;
+    letter-spacing: -0.01em;
+  }
+
+  .trip-meta {
+    font-size: 0.8rem;
+    color: #999;
+  }
+
+  .no-trips {
+    color: #aaa;
+    font-size: 0.95rem;
+  }
+</style>
+
+<div class="photo-header">
+  <h1>Photography</h1>
+  <p>I shoot with a Fujifilm X-T50 and my iPhone. These are a few frames from places I've been.</p>
+  <p class="instagram-link">More on <a href="https://instagram.com/shots.by.sri" target="_blank" rel="noopener">Instagram @shots.by.sri</a></p>
 </div>
-{% endif %} -->
+
+{% assign trips = site.data.galleries.overview %}
+{% if trips.size > 0 %}
+<div class="trip-grid">
+  {% for trip in trips %}
+  {% assign gdata = site.data.galleries[trip.directory] %}
+  <a class="trip-card" href="{{ site.baseurl }}/photography/{{ trip.directory }}.html">
+    <div class="trip-thumb">
+      <img
+        src="{{ site.baseurl }}/assets/photography/{% if trip.picture_path %}{{ trip.picture_path }}{% else %}{{ trip.directory }}{% endif %}/{{ trip.preview.thumbnail }}"
+        alt="{{ trip.title }}"
+        loading="lazy"
+      />
+    </div>
+    <p class="trip-title">{{ trip.title }}</p>
+    <p class="trip-meta">
+      {% if gdata.pictures %}{{ gdata.pictures | size }} photos{% endif %}
+    </p>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<p class="no-trips">No trips yet — add entries to <code>_data/galleries/overview.yml</code>.</p>
+{% endif %}

@@ -2,22 +2,157 @@
 layout: default
 ---
 
-<div class="home">
+<style>
+  .hero {
+    padding: 5rem 0 4rem;
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 3.5rem;
+  }
 
-  <h1 class="page-heading">Posts</h1>
+  .hero-name {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    margin: 0 0 1rem;
+  }
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+  .hero-role {
+    font-size: 1rem;
+    color: #555;
+    margin: 0 0 2rem;
+    font-weight: 400;
+  }
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+  .hero-bio {
+    font-size: 1.05rem;
+    color: #333;
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 0 2.5rem;
+  }
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+  .hero-bio a {
+    color: #111;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 
+  .hero-links {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-links a {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #111;
+    padding: 0.5rem 1.1rem;
+    border: 1.5px solid #111;
+    border-radius: 3px;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .hero-links a:hover {
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .hero-links a.secondary {
+    border-color: #ccc;
+    color: #555;
+  }
+
+  .hero-links a.secondary:hover {
+    background: #f0f0f0;
+    color: #111;
+    border-color: #aaa;
+  }
+
+  /* ── Recent writing ── */
+  .home-section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 1.2rem;
+  }
+
+  .post-list-minimal {
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+  }
+
+  .post-list-minimal li {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .post-list-minimal li:first-child {
+    border-top: 1px solid #f0f0f0;
+  }
+
+  .post-list-minimal .post-date {
+    font-size: 0.8rem;
+    color: #aaa;
+    white-space: nowrap;
+    min-width: 72px;
+  }
+
+  .post-list-minimal a {
+    font-size: 0.97rem;
+    color: #222;
+    text-decoration: none;
+  }
+
+  .post-list-minimal a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .view-all {
+    font-size: 0.82rem;
+    color: #777;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .view-all:hover { color: #111; }
+</style>
+
+<div class="hero">
+  <h1 class="hero-name">Sricharan<br>Chiruvolu</h1>
+  <p class="hero-role">AI Research Engineer · Munich, Germany</p>
+  <p class="hero-bio">
+    I build scalable computer vision systems—from 3D reconstruction and generative modeling to full-body avatars. Currently leading avatar research at <a href="https://www.beyondpresence.ai" target="_blank" rel="noopener">Beyond Presence</a>. Previously at Colossyan, Meshcapade, Siemens, and SAP.
+  </p>
+  <div class="hero-links">
+    <a href="{{ site.baseurl }}/about">About me</a>
+    <a href="{{ site.baseurl }}/photography" class="secondary">Photography</a>
+    <a href="https://github.com/raincrash" target="_blank" rel="noopener" class="secondary">GitHub</a>
+  </div>
 </div>
+
+{% if site.posts.size > 0 %}
+<p class="home-section-label">Recent writing</p>
+<ul class="post-list-minimal">
+  {% for post in site.posts limit:4 %}
+  <li>
+    <span class="post-date">{{ post.date | date: "%b %Y" }}</span>
+    <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+<a class="view-all" href="{{ site.baseurl }}/blog">All posts →</a>
+{% endif %}
