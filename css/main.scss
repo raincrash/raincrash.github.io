@@ -6,28 +6,28 @@
 $font-sans:       "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 $font-mono:       "SFMono-Regular", "Consolas", "Liberation Mono", monospace;
 
-$base-font-size:   17px;
+$base-font-size:   16px;
 $base-font-weight: 400;
-$base-line-height: 1.65;
-$small-font-size:  14px;
+$base-line-height: 1.7;
+$small-font-size:  13px;
 
 $spacing-unit:     32px;
 
-$text:             #111;
+$text:             #0a0a0a;
 $text-secondary:   #555;
-$text-muted:       #999;
-$border:           #e8e8e8;
+$text-muted:       #9a9a9a;
+$border:           #ebebeb;
 $bg:               #fff;
-$bg-subtle:        #f8f8f8;
+$bg-subtle:        #f7f7f7;
 
-// Keep for SCSS partials that still use old names
+// Aliases for legacy SCSS partials
 $base-font-family: $font-sans;
 $text-color:       $text;
 $background-color: $bg;
-$brand-color:      #111;
-$grey-color:       #828282;
-$grey-color-light: lighten($grey-color, 40%);
-$grey-color-dark:  darken($grey-color, 25%);
+$brand-color:      $text;
+$grey-color:       #888;
+$grey-color-light: #e0e0e0;
+$grey-color-dark:  #333;
 $content-width:    860px;
 $on-palm:          600px;
 $on-laptop:        860px;
@@ -38,7 +38,9 @@ $on-laptop:        860px;
 
 @import "base", "layout", "syntax-highlighting";
 
-// ─── Typography refinements ───────────────────────────────────────────────────
+// ─── Global resets / overrides ───────────────────────────────────────────────
+*, *::before, *::after { box-sizing: border-box; }
+
 body {
   font-family: $font-sans;
   font-size: $base-font-size;
@@ -52,19 +54,20 @@ body {
 a {
   color: $text;
   text-decoration: none;
-  &:hover { text-decoration: underline; text-underline-offset: 3px; }
   &:visited { color: $text; }
+  &:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   letter-spacing: -0.02em;
-  line-height: 1.25;
+  line-height: 1.2;
+  margin-bottom: 0.5em;
 }
 
 code, pre {
   font-family: $font-mono;
-  font-size: 0.88em;
+  font-size: 0.875em;
   background: $bg-subtle;
   border: 1px solid $border;
   border-radius: 4px;
@@ -79,22 +82,38 @@ pre {
 }
 
 blockquote {
-  border-left: 3px solid $border;
+  border-left: 2px solid $border;
   color: $text-secondary;
   font-style: normal;
-  padding-left: 20px;
-  margin-left: 0;
+  padding-left: 1.25rem;
+  margin: 1.5rem 0 1.5rem 0;
   font-size: inherit;
-  letter-spacing: 0;
+}
+
+img { border-radius: 4px; }
+
+// ─── Layout wrappers ─────────────────────────────────────────────────────────
+.wrapper {
+  max-width: $content-width;
+  margin: 0 auto;
+  padding: 0 $spacing-unit;
+  @include media-query($on-laptop) {
+    padding: 0 $spacing-unit / 1.5;
+  }
+}
+
+.page-content {
+  padding: $spacing-unit * 1.5 0 $spacing-unit * 3;
 }
 
 // ─── Site header ─────────────────────────────────────────────────────────────
 .site-header {
   border-top: none;
   border-bottom: 1px solid $border;
-  min-height: 56px;
+  min-height: 60px;
   display: flex;
   align-items: center;
+  background: $bg;
 }
 
 .site-header .wrapper {
@@ -105,10 +124,10 @@ blockquote {
 }
 
 .site-title {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 56px;
+  letter-spacing: 0.02em;
+  line-height: 60px;
   margin-bottom: 0;
   float: none;
   color: $text;
@@ -118,18 +137,17 @@ blockquote {
 
 .site-nav {
   float: none;
-  line-height: 56px;
+  line-height: 60px;
 
   .menu-icon { display: none; }
 
   .page-link {
-    font-size: 13px;
-    letter-spacing: 0.06em;
+    font-size: 12px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: $text-secondary;
+    color: $text-muted;
     line-height: 1;
     margin-left: 28px;
-    transition: color 0.15s;
     &:not(:last-child) { margin-right: 0; }
     &:hover { color: $text; text-decoration: none; }
   }
@@ -160,60 +178,25 @@ blockquote {
 
     .page-link {
       display: block;
-      padding: 5px 16px;
+      padding: 6px 16px;
       margin-left: 0;
       &:not(:last-child) { margin-right: 0; }
     }
   }
 }
 
-// ─── Page content ─────────────────────────────────────────────────────────────
-.page-content {
-  padding: $spacing-unit * 1.5 0 $spacing-unit * 3;
-}
-
-.wrapper {
-  max-width: $content-width;
-  margin: 0 auto;
-  padding: 0 $spacing-unit;
-  @include media-query($on-laptop) {
-    padding: 0 $spacing-unit / 1.5;
-  }
-}
-
-// ─── Page layout ─────────────────────────────────────────────────────────────
-.post-header { margin-bottom: $spacing-unit; }
-
-.post-title {
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  @include media-query($on-laptop) { font-size: 1.7rem; }
-}
-
-.post-meta {
-  font-size: $small-font-size;
-  color: $text-muted;
-  margin-top: 8px;
-}
-
-.post-content {
-  margin-top: $spacing-unit;
-
-  h2 { font-size: 1.4rem; margin-top: $spacing-unit * 1.5; }
-  h3 { font-size: 1.15rem; margin-top: $spacing-unit; }
-
-  p { margin-bottom: $spacing-unit / 1.5; }
-  ul, ol { margin-bottom: $spacing-unit / 1.5; padding-left: 1.5em; }
-  li { margin-bottom: 4px; }
-  img { border-radius: 4px; }
-}
-
 // ─── Site footer ─────────────────────────────────────────────────────────────
 .site-footer {
   border-top: 1px solid $border;
   padding: $spacing-unit 0;
+
+  // Explicit overrides beat any cascaded theme styles
+  a {
+    color: $text-muted;
+    text-decoration: none;
+    &:visited { color: $text-muted; }
+    &:hover { color: $text; text-decoration: none; }
+  }
 }
 
 .footer-inner {
@@ -221,7 +204,7 @@ blockquote {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
 }
 
 .footer-copy {
@@ -233,18 +216,232 @@ blockquote {
 .footer-links {
   display: flex;
   gap: 20px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
 
   a {
     font-size: $small-font-size;
     color: $text-muted;
+    text-decoration: none;
+    &:visited { color: $text-muted; }
     &:hover { color: $text; text-decoration: none; }
   }
 }
 
-// ─── Utility classes ─────────────────────────────────────────────────────────
+// ─── Blog / post layout ──────────────────────────────────────────────────────
+.post-header { margin-bottom: $spacing-unit; }
+
+.post-title {
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  @include media-query($on-laptop) { font-size: 1.75rem; }
+}
+
+.post-meta {
+  font-size: $small-font-size;
+  color: $text-muted;
+  margin-top: 6px;
+}
+
+.post-back {
+  display: inline-block;
+  font-size: $small-font-size;
+  color: $text-muted;
+  margin-bottom: $spacing-unit;
+  &:hover { color: $text; text-decoration: none; }
+  &:visited { color: $text-muted; }
+}
+
+.post-content {
+  max-width: 660px;
+  margin-top: $spacing-unit;
+
+  h2 { font-size: 1.35rem; margin-top: $spacing-unit * 1.5; }
+  h3 { font-size: 1.1rem; margin-top: $spacing-unit; }
+
+  p { margin-bottom: 1.25rem; }
+  ul, ol { margin-bottom: 1.25rem; padding-left: 1.5em; }
+  li { margin-bottom: 4px; }
+
+  a { color: $text; text-decoration: underline; text-underline-offset: 3px; }
+  a:visited { color: $text-secondary; }
+}
+
+// ─── Photography ─────────────────────────────────────────────────────────────
+.trip-back {
+  display: inline-block;
+  font-size: $small-font-size;
+  color: $text-muted;
+  margin-bottom: $spacing-unit;
+  &:hover { color: $text; text-decoration: none; }
+  &:visited { color: $text-muted; }
+}
+
+.trip-page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.25rem;
+}
+
+.trip-desc {
+  color: $text-secondary;
+  font-size: 0.95rem;
+  margin-bottom: $spacing-unit * 1.5;
+}
+
+/* ── Photography grid ── */
+.trip-photos {
+  column-count: 3;
+  column-gap: 12px;
+  @include media-query(900px) { column-count: 2; }
+  @include media-query($on-palm) { column-count: 1; }
+}
+
+.trip-photo {
+  break-inside: avoid;
+  margin: 0 0 12px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+
+  img {
+    display: block;
+    width: 100%;
+    border-radius: 4px;
+    transition: opacity 0.2s;
+  }
+
+  &:hover img { opacity: 0.88; }
+  &:focus { outline: 2px solid $text; outline-offset: 2px; }
+}
+
+/* ── Lightbox ── */
+.lb {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+
+  &[hidden] { display: none; }
+}
+
+.lb-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.lb-img {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 3px;
+  display: block;
+}
+
+.lb-caption {
+  color: rgba(255,255,255,0.65);
+  font-size: 13px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.lb-close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  &:hover { color: #fff; }
+}
+
+.lb-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.6);
+  font-size: 2.5rem;
+  cursor: pointer;
+  padding: 8px 16px;
+  line-height: 1;
+  &:hover { color: #fff; }
+}
+
+.lb-prev { left: 8px; }
+.lb-next { right: 8px; }
+
+/* ── Photography overview ── */
+.photo-header {
+  padding-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid $border;
+}
+
+.photo-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.25rem;
+}
+
+.photo-header p {
+  color: $text-secondary;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.trip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: $spacing-unit;
+}
+
+.trip-card {
+  display: block;
+  text-decoration: none;
+  &:hover { text-decoration: none; }
+  &:hover .trip-card-cover { opacity: 0.88; }
+}
+
+.trip-card-cover {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 5px;
+  display: block;
+  transition: opacity 0.2s;
+  background: $bg-subtle;
+}
+
+.trip-card-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: $text;
+  margin: 0.6rem 0 0.15rem;
+}
+
+.trip-card-count {
+  font-size: 0.78rem;
+  color: $text-muted;
+}
+
+// ─── Utilities ───────────────────────────────────────────────────────────────
 %clearfix {
   &:after { content: ""; display: table; clear: both; }
 }
@@ -255,16 +452,4 @@ blockquote {
   height: 16px;
   vertical-align: middle;
   path { fill: $grey-color; }
-}
-
-// Grid helpers (kept for compatibility)
-.row {
-  width: 100%;
-  display: block;
-  &::after { content: ""; display: table; clear: both; }
-  .column { float: left; display: block; box-sizing: border-box; }
-  .half-width {
-    @extend .column;
-    @media screen and (min-width: $on-palm) { width: 48%; }
-  }
 }

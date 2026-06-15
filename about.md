@@ -5,97 +5,107 @@ permalink: /about/
 ---
 
 <style>
-  .about-wrap {
-    max-width: 620px;
-  }
+  .about-wrap { max-width: 640px; }
 
-  .about-header {
-    padding-bottom: 1.5rem;
+  /* ── Top section: photo + name ── */
+  .about-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-bottom: 2rem;
     margin-bottom: 2rem;
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 1px solid #ebebeb;
   }
 
-  .about-header h1 {
-    font-size: 2rem;
+  .about-top-text h1 {
+    font-size: 1.85rem;
     font-weight: 700;
     letter-spacing: -0.03em;
     margin: 0 0 0.3rem;
+    line-height: 1.15;
   }
 
-  .about-header .role {
-    font-size: 0.95rem;
+  .about-role {
+    font-size: 0.9rem;
     color: #888;
     margin: 0;
   }
 
+  .about-photo {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid #ebebeb;
+  }
+
+  @media (max-width: 480px) {
+    .about-top { flex-direction: column-reverse; gap: 1rem; }
+    .about-photo { width: 72px; height: 72px; }
+  }
+
+  /* ── Body ── */
   .about-body {
     font-size: 1rem;
-    line-height: 1.75;
+    line-height: 1.8;
     color: #222;
+    margin-bottom: 2.5rem;
   }
 
   .about-body p { margin-bottom: 1.1rem; }
 
   .about-body a {
-    color: #111;
+    color: #0a0a0a;
     text-decoration: underline;
     text-underline-offset: 3px;
   }
 
-  .about-body code {
-    font-size: 0.88em;
-    background: #f4f4f4;
-    border: 1px solid #eee;
-    padding: 2px 6px;
-    border-radius: 3px;
-  }
-
+  /* ── Contact ── */
   .contact-section {
-    margin-top: 2.5rem;
-    padding-top: 2rem;
-    border-top: 1px solid #e8e8e8;
+    padding-top: 1.75rem;
+    border-top: 1px solid #ebebeb;
   }
 
   .contact-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #999;
-    margin-bottom: 0.9rem;
+    color: #9a9a9a;
+    margin-bottom: 0.75rem;
   }
 
   .contact-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
+    gap: 0 1.5rem;
   }
 
   .contact-links a {
-    display: inline-block;
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    font-size: 0.9rem;
     color: #444;
     text-decoration: none;
-    padding: 0.4rem 0.9rem;
-    border: 1px solid #ddd;
-    border-radius: 3px;
+    padding: 0.2rem 0;
+    border-bottom: 1px solid #ddd;
     transition: border-color 0.15s, color 0.15s;
   }
 
   .contact-links a:hover {
-    border-color: #111;
-    color: #111;
+    color: #0a0a0a;
+    border-color: #0a0a0a;
     text-decoration: none;
   }
 </style>
 
 <div class="about-wrap">
-  <div class="about-header">
-    <h1>Sricharan Chiruvolu</h1>
-    <p class="role">AI Research Engineer · Munich, Germany</p>
+  <div class="about-top">
+    <div class="about-top-text">
+      <h1>Sricharan Chiruvolu</h1>
+      <p class="about-role">AI Research Engineer · Munich, Germany</p>
+    </div>
+    <img class="about-photo" src="{{ site.logo_url }}" alt="Sricharan Chiruvolu">
   </div>
 
   <div class="about-body">
