@@ -1,0 +1,13 @@
+# Pixel sizes of each photo (full and thumbnail), written by bin/add-photos.
+# Used for width/height attributes (no layout shift) and image structured data.
+astro/milky-way-rising.webp: { w: 1080, h: 1350, tw: 720, th: 900 }
+astro/perseids-over-the-forest.webp: { w: 3840, h: 2560, tw: 900, th: 600 }
+astro/stars-over-the-hills.webp: { w: 2561, h: 3840, tw: 601, th: 900 }
+landscape/snow-capped-peaks.webp: { w: 2000, h: 1333, tw: 900, th: 600 }
+landscape/snowy-mountain-village.webp: { w: 2000, h: 1333, tw: 900, th: 600 }
+landscape/winter-bay-with-red-cabins.webp: { w: 2000, h: 1333, tw: 900, th: 600 }
+travel/kasbah-by-the-river.webp: { w: 2000, h: 1333, tw: 900, th: 600 }
+wildlife/blue-monkey.webp: { w: 2000, h: 1333, tw: 900, th: 600 }
+wildlife/elephant-and-egret.webp: { w: 2000, h: 1333, tw: 900, th: 600 }
+wildlife/elephant-dust-bath.webp: { w: 2000, h: 1333, tw: 900, th: 600 }
+wildlife/lionesses-in-the-grass.webp: { w: 2000, h: 1333, tw: 900, th: 600 }

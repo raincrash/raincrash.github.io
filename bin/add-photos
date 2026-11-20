@@ -67,6 +67,12 @@ for src in "$@"; do
   cwebp -quiet -q "$QUALITY" -m 6 -sharp_yuv -metadata icc $(fit "$MAX_PX") "$tmp/in.png" -o "$out/$name.webp"
   cwebp -quiet -q 82 -m 6 -sharp_yuv -metadata icc $(fit 900) "$tmp/in.png" -o "$out/thumbs/$name.webp"
 
+  # Record sizes for width/height attributes and structured data.
+  sizes="$root/_data/photo_sizes.yml"; key="$category/$name.webp"
+  dim() { sips -g "$1" "$2" | awk -v k="$1" '$1 == k":" {print $2}'; }
+  [ -f "$sizes" ] && grep -v "^$key:" "$sizes" > "$tmp/sizes" && cp "$tmp/sizes" "$sizes"
+  echo "$key: { w: $(dim pixelWidth "$out/$name.webp"), h: $(dim pixelHeight "$out/$name.webp"), tw: $(dim pixelWidth "$out/thumbs/$name.webp"), th: $(dim pixelHeight "$out/thumbs/$name.webp") }" >> "$sizes"
+
   long=$(( w > h ? w : h )); [ "$long" -gt "$MAX_PX" ] && long=$MAX_PX
   printf '  + %-40s %5spx  %s\n' "$category/$name.webp" "$long" "$(du -h "$out/$name.webp" | cut -f1)"
 done

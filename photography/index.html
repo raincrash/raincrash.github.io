@@ -26,7 +26,7 @@ description: Photographs by Sricharan Chiruvolu from around the world, on film a
       {%- if cat.cover -%}{%- assign cover = cat.cover -%}{%- endif -%}
       <a class="album" href="{{ '/photography/' | append: cat.slug | append: '/' | relative_url }}">
         <div class="album__cover">
-          <img src="{{ '/assets/photos/' | append: cat.slug | append: '/thumbs/' | append: cover | relative_url }}" alt="" {% if shown > 6 %}loading="lazy" {% endif %}decoding="async">
+          <img src="{{ '/assets/photos/' | append: cat.slug | append: '/thumbs/' | append: cover | relative_url }}" alt="{{ cat.name }} photography" width="900" height="675" {% if shown > 6 %}loading="lazy" {% endif %}decoding="async">
         </div>
         <div class="album__meta">
           <h2 class="album__name">{{ cat.name }}</h2>

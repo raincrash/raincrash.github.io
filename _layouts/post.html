@@ -15,7 +15,7 @@ layout: default
   </header>
 
   <div class="prose prose--post">
-    {{ content | replace: '<img src=', '<img loading="lazy" decoding="async" src=' }}
+    {{ content | replace: '<img src=', '<img loading="lazy" decoding="async" src=' | replace_first: 'loading="lazy" ', '' }}
   </div>
 
   <nav class="post__nav mono" aria-label="More posts">

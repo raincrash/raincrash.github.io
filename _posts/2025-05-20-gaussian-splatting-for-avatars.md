@@ -2,6 +2,8 @@
 title: "Fuzzy Blobs All the Way Down: Gaussian Splatting for Avatars"
 description: What 3D Gaussian Splatting is, why it beats meshes and NeRFs for real-time digital humans, and where it still falls apart.
 tags: [3d, graphics, avatars]
+seo_title: Gaussian Splatting for Avatars, Explained
+image: /assets/og/posts/gaussian-splatting-for-avatars.png
 ---
 
 Your face is a cloud of fuzzy blobs. At least, that's the most useful way I've

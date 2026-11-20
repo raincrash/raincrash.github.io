@@ -1,6 +1,8 @@
 ---
 title: "The Teacher Doesn't Need to Be in the Room: Distilling Video Models into a Tiny Controller"
-description: How a ~1M-parameter model distilled from a large video generation model can steer an avatar's expressions in real time, why small models win, and what you give up.
+description: How a ~1M-parameter model distilled from a video generation model steers an avatar's expressions in real time, why small wins, and what you lose.
+seo_title: Distilling Video Models into a Tiny Real-Time Controller
+image: /assets/og/posts/distilling-video-models-into-a-tiny-controller.png
 tags: [ml, distillation, avatars]
 ---
 

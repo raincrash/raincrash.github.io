@@ -25,6 +25,9 @@ Front matter: `title`, `description` (shown in the post list, search results and
 previews: always write one) and `tags`. Optional `image: /assets/<post>/cover.jpg` sets the
 link-preview card (1200×630 works best); otherwise the default card in `assets/og/` is used.
 Give every image real alt text: `![what it shows](/assets/...)`.
+For a share card in the site's style, run `bin/og-card _posts/<file>.md` and add the
+`image:` line it prints. If the title is long, add a shorter `seo_title:` (~55 chars) for
+search results; the full title still shows on the page and in previews.
 Math is on for all posts (KaTeX): `$$ x^2 $$` inside a sentence is inline,
 `$$ … $$` on its own lines is a display block. `\( … \)` and `\[ … \]` work too.
 Put post images in `assets/<post-name>/` and reference them as `/assets/<post-name>/x.png`.

@@ -19,12 +19,16 @@ wide: true
 <div class="gallery" data-batch="{{ batch }}">
   {% for p in photos %}
     {%- assign caption = site.data.photography.captions[p.name] -%}
-    <button type="button" class="gallery__item" data-full="{{ p.path | relative_url }}"
+    {%- assign label = caption -%}{%- unless label -%}{%- assign label = p.basename | replace: '-', ' ' | capitalize -%}{%- endunless -%}
+    {%- assign key = page.category | append: '/' | append: p.name -%}
+    {%- assign size = site.data.photo_sizes[key] -%}
+    <a class="gallery__item" href="{{ p.path | relative_url }}" data-full="{{ p.path | relative_url }}"
       data-caption="{{ caption | escape }}" {% if forloop.index > batch %}hidden{% endif %}>
       <img {% if forloop.index > batch %}data-{% endif %}src="{{ '/assets/photos/' | append: page.category | append: '/thumbs/' | append: p.name | relative_url }}"
-        alt="{{ caption | default: p.basename | replace: '-', ' ' | capitalize | escape }}" {% if forloop.index > 6 %}loading="lazy" {% endif %}decoding="async">
+        alt="{{ label | escape }}"
+        {% if size %}width="{{ size.tw }}" height="{{ size.th }}" {% endif %}{% if forloop.index > 6 %}loading="lazy" {% endif %}decoding="async">
       {% if caption %}<span class="gallery__caption">{{ caption }}</span>{% endif %}
-    </button>
+    </a>
   {% endfor %}
 </div>
 {% if photos.size > batch %}
@@ -40,6 +44,36 @@ wide: true
   <button type="button" class="lightbox__btn lightbox__prev" aria-label="Previous photo">←</button>
   <button type="button" class="lightbox__btn lightbox__next" aria-label="Next photo">→</button>
 </div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  "name": {{ cat.name | append: " photography by " | append: site.author.name | jsonify }},
+  "description": {{ page.description | jsonify }},
+  "url": {{ page.url | absolute_url | jsonify }},
+  "author": { "@type": "Person", "name": {{ site.author.name | jsonify }}, "url": {{ '/about/' | absolute_url | jsonify }} },
+  "image": [
+    {%- for p in photos -%}
+    {%- assign key = page.category | append: '/' | append: p.name -%}
+    {%- assign size = site.data.photo_sizes[key] -%}
+    {%- assign caption = site.data.photography.captions[p.name] -%}
+    {%- unless caption -%}{%- assign caption = p.basename | replace: '-', ' ' | capitalize -%}{%- endunless -%}
+    {
+      "@type": "ImageObject",
+      "contentUrl": {{ p.path | absolute_url | jsonify }},
+      "thumbnailUrl": {{ '/assets/photos/' | append: page.category | append: '/thumbs/' | append: p.name | absolute_url | jsonify }},
+      "name": {{ caption | jsonify }},
+      "caption": {{ caption | jsonify }},
+      {% if size %}"width": {{ size.w }}, "height": {{ size.h }},{% endif %}
+      "encodingFormat": "image/webp",
+      "creator": { "@type": "Person", "name": {{ site.author.name | jsonify }} },
+      "creditText": {{ site.author.name | jsonify }},
+      "copyrightNotice": {{ "© " | append: site.author.name | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ]
+}
+</script>
 {% else %}
 <p class="gallery-empty">No photos here yet.</p>
 {% endif %}

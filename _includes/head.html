@@ -4,7 +4,17 @@
 <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0c0c0e" media="(prefers-color-scheme: dark)">
 <link rel="apple-touch-icon" href="{{ '/assets/og/logo.png' | relative_url }}">
-{% seo %}
+{%- comment -%} Short <title>s for search results (~60 chars); `seo_title` overrides per page. {%- endcomment -%}
+{%- if page.url == "/" -%}
+  {%- assign doc_title = site.title | append: " · AI Research Lead, Munich" -%}
+{%- elsif paginator and paginator.page > 1 -%}
+  {%- assign doc_title = "Blog, page " | append: paginator.page | append: " | " | append: site.title -%}
+{%- else -%}
+  {%- assign doc_title = page.seo_title | default: page.title | append: " | " | append: site.title -%}
+{%- endif -%}
+<title>{{ doc_title | strip_html | escape }}</title>
+{% seo title=false %}
+{% if page.url == "/404.html" or page.noindex %}<meta name="robots" content="noindex">{% endif %}
 {% feed_meta %}
 <script>
   // Apply saved theme before paint to avoid a flash.

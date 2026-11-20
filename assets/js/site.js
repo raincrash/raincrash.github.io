@@ -85,7 +85,13 @@
     if (lastFocus) lastFocus.focus();
   }
 
-  items.forEach(function (el) { el.addEventListener("click", function () { open(el); }); });
+  items.forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey) return; // let cmd-click open the file
+      e.preventDefault();
+      open(el);
+    });
+  });
   box.querySelector(".lightbox__close").addEventListener("click", close);
   box.querySelector(".lightbox__prev").addEventListener("click", function () { show(index - 1); });
   box.querySelector(".lightbox__next").addEventListener("click", function () { show(index + 1); });

@@ -2,6 +2,8 @@
 title: "Hearing the Shape of A Drum"
 description: Spectral geometry, the Laplace–Beltrami operator, and whether the eigenvalues of a manifold determine its shape.
 tags: [geometry, ml]
+image: /assets/og/posts/hearing-the-shape-of-a-drum.png
+last_modified_at: 2026-11-20
 ---
 
 Spectral geometry may sound like an abstract concept reserved for mathematicians, but its potential applications in various fields make it a fascinating topic for scientists and technology experts alike. At its core, spectral geometry explores the relationship between a manifold's geometry and its spectrum - an idea that has found relevance in classical and quantum mechanics, analysis, and even the study of the universe itself. As a computer scientist, I became particularly intrigued by how these concepts could be extended to shape analysis applications, such as correspondence matching, style transfer, and interpolation. To dive deeper into this intriguing field, let's first explore the basic concepts of a Riemannian manifold and the Laplace-Beltrami operator.

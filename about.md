@@ -2,7 +2,7 @@
 title: About
 permalink: /about/
 section: about
-description: "Sricharan Chiruvolu is an AI Research Lead in Munich working on generative AI, computer vision and 3D: real-time digital humans, Gaussian Splatting and diffusion models."
+description: "Sricharan Chiruvolu is an AI Research Lead in Munich working on generative AI, computer vision and 3D: digital humans, Gaussian Splatting, diffusion."
 ---
 {% include person-jsonld.html %}
 
