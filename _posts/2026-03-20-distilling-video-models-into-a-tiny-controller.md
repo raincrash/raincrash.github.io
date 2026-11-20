@@ -26,8 +26,8 @@ what it quietly gives up.
 
 ## First, the setup
 
-Say you already have a fast, photorealistic avatar. In my
-[previous post](/gaussian-splatting-for-avatars/) I described one way to
+Say you already have a fast, photorealistic avatar. In an
+[earlier post](/gaussian-splatting-for-avatars/) I described one way to
 build it: a cloud of 3D Gaussians rigged to a parametric face model like
 [FLAME](https://flame.is.tue.mpg.de/). The important property is that the
 avatar is driven by a small vector of numbers per frame: expression
@@ -50,7 +50,9 @@ and it has to run in well under a millisecond.
 
 The naive way to use a video model here is to generate video and render it. That
 fails twice: it's far too slow, and the output isn't _your_ avatar. It's some
-other person in some other room.
+other person in some other room. Cutting the teacher down to a few sampling
+steps, as in my [last post](/distilling-diffusion-models/), only chips away at
+the first problem: it's still a large model producing someone else's pixels.
 
 The useful observation is that we don't need the teacher's pixels at all. We
 already have a renderer. What we need is the teacher's understanding of _how
