@@ -44,7 +44,7 @@ twitter:
 #   google: XXXXXXXX
 #   bing: XXXXXXXX
 
-# ─── Blog ──────────────────────────────────────────────────────────────
+# ─── Random Musings ────────────────────────────────────────────────────
 permalink: /:title/
 paginate: 8
 paginate_path: /blog/page:num/

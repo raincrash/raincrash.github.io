@@ -8,7 +8,7 @@
 {%- if page.url == "/" -%}
   {%- assign doc_title = site.title | append: " · AI Research Lead, Munich" -%}
 {%- elsif paginator and paginator.page > 1 -%}
-  {%- assign doc_title = "Blog, page " | append: paginator.page | append: " | " | append: site.title -%}
+  {%- assign doc_title = "Random Musings, page " | append: paginator.page | append: " | " | append: site.title -%}
 {%- else -%}
   {%- assign doc_title = page.seo_title | default: page.title | append: " | " | append: site.title -%}
 {%- endif -%}

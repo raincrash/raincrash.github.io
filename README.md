@@ -5,7 +5,7 @@ plus a photography portfolio. Plain Jekyll, no theme gem, no JavaScript framewor
 GitHub Pages builds it from the **`gh-pages`** branch (the only branch) and serves it at
 <https://sric.me>.
 
-- **Home** `index.html` · **About** `about.md` · **Blog** `blog/index.html` (paginated)
+- **Home** `index.html` · **About** `about.md` · **Random Musings** `blog/index.html` (paginated)
 - **Photography** `photography/index.html` (album tiles) → one page per album
 
 ## Quick start

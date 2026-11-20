@@ -47,6 +47,7 @@
     color: var(--muted);
     text-decoration: none;
     padding: .35rem 0;
+    white-space: nowrap;
     &:hover { color: var(--fg); }
     &[aria-current="page"] { color: var(--fg); }
     &[aria-current="page"]::before { content: "./"; color: var(--accent); }
@@ -81,8 +82,10 @@
 :root[data-theme="dark"] .theme-toggle { @include toggle-dark; }
 
 @media (max-width: 30rem) {
-  .nav { gap: .85rem; font-size: .8rem; }
+  .site-header__inner { gap: .5rem; }
+  .nav { gap: .5rem; font-size: .8rem; }
   .logo__cursor { display: none; }
+  .nav__long { display: none; }
 }
 
 .site-footer {
