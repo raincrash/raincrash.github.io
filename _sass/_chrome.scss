@@ -1,0 +1,113 @@
+// Header + footer
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3.5rem;
+  gap: 1rem;
+}
+
+.logo {
+  font: 600 .95rem/1 var(--font-mono);
+  text-decoration: none;
+  color: var(--fg);
+  white-space: nowrap;
+  &:hover { color: var(--fg); }
+}
+.logo__prompt { color: var(--accent); }
+.logo__cursor {
+  display: inline-block;
+  width: .55em;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: -.18em;
+  background: var(--accent);
+  animation: blink 1.1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .logo__cursor { animation: none; } }
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  font: 400 .85rem/1 var(--font-mono);
+
+  a {
+    color: var(--muted);
+    text-decoration: none;
+    padding: .35rem 0;
+    &:hover { color: var(--fg); }
+    &[aria-current="page"] { color: var(--fg); }
+    &[aria-current="page"]::before { content: "./"; color: var(--accent); }
+  }
+}
+
+// Photography is the one link that steps out of the terminal look.
+.nav .nav__photo {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: .95rem;
+  &[aria-current="page"]::before { content: none; }
+  &[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: .35em; }
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  margin-right: -.4rem;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  &:hover { color: var(--fg); background: var(--bg-code); }
+  .icon-moon { display: none; }
+}
+@mixin toggle-dark { .icon-sun { display: none; } .icon-moon { display: block; } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .theme-toggle { @include toggle-dark; } }
+:root[data-theme="dark"] .theme-toggle { @include toggle-dark; }
+
+@media (max-width: 30rem) {
+  .nav { gap: .85rem; font-size: .8rem; }
+  .logo__cursor { display: none; }
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  font-size: .74rem;
+  color: var(--muted);
+}
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .75rem;
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+}
+.site-footer__links {
+  display: flex;
+  gap: .85rem;
+  a { color: var(--muted); text-decoration: none; &:hover { color: var(--accent); } }
+}
+
+.site-footer__credit { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem .5rem; }
+.site-footer__built::before { content: "\00b7"; margin-right: .5rem; color: var(--faint); }
+.site-footer__built {
+  color: var(--faint);
+  a { color: var(--faint); text-decoration: none; &:hover { color: var(--accent); } }
+}
+.site-footer__built .emoji { font-size: .85em; opacity: .75; font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; }

@@ -1,120 +1,39 @@
 ---
 layout: default
 title: Photography
-permalink: /photography/
+section: photography
+wide: true
+description: Photographs by Sricharan Chiruvolu from around the world, on film and digital.
 ---
+<header class="gallery-header">
+  <div>
+    <h1>Photography</h1>
+    <p>I shoot a bit of everything, from the night sky to city streets to little details
+      I notice on walks, wherever I happen to be. I love both film and digital, and
+      switch between them depending on the mood. More of it, day to day, on
+      <a href="https://instagram.com/{{ site.handles.instagram }}" rel="noopener">Instagram</a>.</p>
+  </div>
+</header>
 
-<style>
-  .photo-header {
-    padding-bottom: 1.5rem;
-    margin-bottom: 2.5rem;
-    border-bottom: 1px solid #e8e8e8;
-  }
-
-  .photo-header h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    margin: 0 0 0.6rem;
-  }
-
-  .photo-header p {
-    color: #555;
-    font-size: 0.95rem;
-    line-height: 1.65;
-    max-width: 560px;
-    margin: 0 0 0.4rem;
-  }
-
-  .photo-header .instagram-link {
-    font-size: 0.85rem;
-    color: #888;
-  }
-
-  .photo-header .instagram-link a {
-    color: #555;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  /* ── Trip grid ── */
-  .trip-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem 1.5rem;
-  }
-
-  .trip-card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .trip-card:hover { text-decoration: none; }
-
-  .trip-thumb {
-    position: relative;
-    aspect-ratio: 3 / 2;
-    overflow: hidden;
-    background: #f0f0f0;
-    margin-bottom: 0.75rem;
-  }
-
-  .trip-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .trip-card:hover .trip-thumb img { transform: scale(1.04); }
-
-  .trip-title {
-    font-size: 0.97rem;
-    font-weight: 600;
-    color: #111;
-    margin: 0 0 0.2rem;
-    letter-spacing: -0.01em;
-  }
-
-  .trip-meta {
-    font-size: 0.8rem;
-    color: #999;
-  }
-
-  .no-trips {
-    color: #aaa;
-    font-size: 0.95rem;
-  }
-</style>
-
-<div class="photo-header">
-  <h1>Photography</h1>
-  <p>I shoot with a Fujifilm X-T50 and my iPhone. These are a few frames from places I've been.</p>
-  <p class="instagram-link">More on <a href="https://instagram.com/shots.by.sri" target="_blank" rel="noopener">Instagram @shots.by.sri</a></p>
+<div class="albums">
+  {%- assign shown = 0 -%}
+  {%- assign albums = site.data.photography.categories | sort: "name" -%}
+  {%- for cat in albums -%}
+    {%- include photos.html category=cat.slug -%}
+    {%- if photos.size > 0 -%}
+      {%- assign shown = shown | plus: 1 -%}
+      {%- assign cover = photos.first.name -%}
+      {%- if cat.cover -%}{%- assign cover = cat.cover -%}{%- endif -%}
+      <a class="album" href="{{ '/photography/' | append: cat.slug | append: '/' | relative_url }}">
+        <div class="album__cover">
+          <img src="{{ '/assets/photos/' | append: cat.slug | append: '/thumbs/' | append: cover | relative_url }}" alt="" {% if shown > 6 %}loading="lazy" {% endif %}decoding="async">
+        </div>
+        <div class="album__meta">
+          <h2 class="album__name">{{ cat.name }}</h2>
+          <span class="album__count mono">{{ photos.size }}</span>
+        </div>
+      </a>
+    {%- endif -%}
+  {%- endfor -%}
 </div>
-
-{% assign trips = site.data.galleries.overview %}
-{% if trips.size > 0 %}
-<div class="trip-grid">
-  {% for trip in trips %}
-  {% assign gdata = site.data.galleries[trip.directory] %}
-  <a class="trip-card" href="{{ site.baseurl }}/photography/{{ trip.directory }}.html">
-    <div class="trip-thumb">
-      <img
-        src="{{ site.baseurl }}/assets/photography/{% if trip.picture_path %}{{ trip.picture_path }}{% else %}{{ trip.directory }}{% endif %}/{{ trip.preview.thumbnail }}"
-        alt="{{ trip.title }}"
-        loading="lazy"
-      />
-    </div>
-    <p class="trip-title">{{ trip.title }}</p>
-    <p class="trip-meta">
-      {% if gdata.pictures %}{{ gdata.pictures | size }} photos{% endif %}
-    </p>
-  </a>
-  {% endfor %}
-</div>
-{% else %}
-<p class="no-trips">No trips yet — add entries to <code>_data/galleries/overview.yml</code>.</p>
-{% endif %}
+{% if shown == 0 %}<p class="gallery-empty">No photos yet. Add some with <code>bin/add-photos</code>.</p>{% endif %}

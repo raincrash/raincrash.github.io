@@ -1,0 +1,21 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "url": {{ page.url | absolute_url | jsonify }},
+  "mainEntity": {
+    "@type": "Person",
+    "name": {{ site.author.name | jsonify }},
+    "alternateName": ["Sri Chiruvolu", "raincrash"],
+    "url": {{ '/' | absolute_url | jsonify }},
+    "image": {{ site.author.avatar | jsonify }},
+    "jobTitle": "AI Research Lead",
+    "description": {{ site.description | jsonify }},
+    "worksFor": { "@type": "Organization", "name": "Beyond Presence", "url": "https://www.beyondpresence.ai" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Technical University of Munich", "url": "https://www.tum.de" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Munich", "addressCountry": "DE" },
+    "knowsAbout": ["Generative AI", "Computer Vision", "3D Reconstruction", "3D Gaussian Splatting", "Digital Humans", "Diffusion Models", "Photography"],
+    "sameAs": {{ site.social.links | jsonify }}
+  }
+}
+</script>

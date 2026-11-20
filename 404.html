@@ -1,26 +1,13 @@
 ---
-permalink: /404.html
 layout: default
+permalink: /404.html
+title: Not found
+section: home
+sitemap: false
 ---
-
-<style type="text/css" media="screen">
-    .container {
-        margin: 10px auto;
-        max-width: 600px;
-        text-align: center;
-    }
-
-    h1 {
-        margin: 30px 0;
-        font-size: 4em;
-        line-height: 1;
-        letter-spacing: -1px;
-    }
-</style>
-
-<div class="container">
-    <h1>404</h1>
-
-    <p><strong>Page not found :(</strong></p>
-    <p>The requested page could not be found.</p>
-</div>
+<section class="home">
+  <p class="home__prompt mono"><span class="prompt">$</span> cd {{ page.url }}</p>
+  <h1 class="home__name">404</h1>
+  <p class="home__role mono">No such file or directory.</p>
+  <nav class="home__nav mono"><a href="{{ '/' | relative_url }}">cd ~</a><a href="{{ '/blog/' | relative_url }}">ls blog/</a></nav>
+</section>

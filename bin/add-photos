@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+# Add photos to a gallery category.
+#
+#   bin/add-photos <category> <image> [image ...]
+#   bin/add-photos astro ~/Pictures/export/*.jpg
+#
+# For each image this writes WebP files with EXIF/GPS removed (colour profile kept):
+#   assets/photos/<category>/<name>.webp         your export's size, capped at
+#                                                3840px long edge (never upscaled)
+#   assets/photos/<category>/thumbs/<name>.webp   900px long edge, for the grid
+# Override the cap / quality: MAX_PX=2000 QUALITY=92 bin/add-photos ...
+# <name> is the original file name, lower-cased with spaces → dashes.
+# Also creates the album page photography/<category>.html if it's new.
+# Optional: add a caption for it in _data/photography.yml.
+#
+# macOS only (uses sips); needs cwebp: brew install webp
+set -euo pipefail
+
+if [ $# -lt 2 ]; then
+  sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//'
+  exit 1
+fi
+
+root="$(cd "$(dirname "$0")/.." && pwd)"
+category="$1"; shift
+
+if ! grep -q "slug: ${category}\$" "$root/_data/photography.yml"; then
+  echo "Unknown category '$category'. Add it to _data/photography.yml first." >&2
+  exit 1
+fi
+command -v cwebp >/dev/null || { echo "cwebp not found: brew install webp" >&2; exit 1; }
+
+# Album page (one tiny stub per category) - created on first use.
+page="$root/photography/$category.html"
+if [ ! -e "$page" ]; then
+  name="$(awk -v s="$category" '$0 ~ "slug: "s"$" {getline; sub(/^ *name: */, ""); print; exit}' "$root/_data/photography.yml")"
+  printf -- '---\nlayout: gallery\ntitle: %s\ncategory: %s\ndescription: %s photographs by Sricharan Chiruvolu, on film and digital.\npermalink: /photography/%s/\n---\n' \
+    "${name:-$category}" "$category" "${name:-$category}" "$category" > "$page"
+  echo "  + photography/$category.html (album page)"
+fi
+
+MAX_PX="${MAX_PX:-3840}"
+QUALITY="${QUALITY:-90}"
+out="$root/assets/photos/$category"
+mkdir -p "$out/thumbs"
+tmp="$(mktemp -d)"; trap 'rm -rf "$tmp"' EXIT
+
+for src in "$@"; do
+  base="$(basename "$src")"
+  name="$(echo "${base%.*}" | tr '[:upper:]' '[:lower:]' | tr ' _' '--')"
+
+  # Decode once to lossless PNG (keeps the colour profile) and bake the EXIF
+  # orientation into the pixels, since cwebp ignores it.
+  orient="$(sips -g orientation "$src" 2>/dev/null | awk '/orientation/ {print $2}')"
+  sips -s format png "$src" --out "$tmp/in.png" >/dev/null
+  case "$orient" in
+    3) sips -r 180 "$tmp/in.png" >/dev/null ;;
+    6) sips -r 90  "$tmp/in.png" >/dev/null ;;
+    8) sips -r 270 "$tmp/in.png" >/dev/null ;;
+  esac
+  w="$(sips -g pixelWidth  "$tmp/in.png" | awk '/pixelWidth/ {print $2}')"
+  h="$(sips -g pixelHeight "$tmp/in.png" | awk '/pixelHeight/ {print $2}')"
+
+  # resize args: fit the long edge to $1, never upscale
+  fit() { if [ "$w" -ge "$h" ]; then [ "$w" -gt "$1" ] && echo "-resize $1 0"; else [ "$h" -gt "$1" ] && echo "-resize 0 $1"; fi; true; }
+
+  cwebp -quiet -q "$QUALITY" -m 6 -sharp_yuv -metadata icc $(fit "$MAX_PX") "$tmp/in.png" -o "$out/$name.webp"
+  cwebp -quiet -q 82 -m 6 -sharp_yuv -metadata icc $(fit 900) "$tmp/in.png" -o "$out/thumbs/$name.webp"
+
+  long=$(( w > h ? w : h )); [ "$long" -gt "$MAX_PX" ] && long=$MAX_PX
+  printf '  + %-40s %5spx  %s\n' "$category/$name.webp" "$long" "$(du -h "$out/$name.webp" | cut -f1)"
+done

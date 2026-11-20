@@ -1,0 +1,102 @@
+// Long-form text. Posts use a serif for comfortable reading;
+// headings, code and UI stay in sans/mono.
+.prose {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--fg-soft);
+  overflow-wrap: break-word;
+
+  > * + * { margin-top: 1.2em; }
+  p, ul, ol, blockquote, pre, figure, table { margin: 0; }
+  > * + p, > * + ul, > * + ol, > * + pre, > * + blockquote, > * + table, > * + figure, > * + .katex-display { margin-top: 1.25em; }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-sans);
+    color: var(--fg);
+    letter-spacing: -.02em;
+    line-height: 1.3;
+    margin: 2.2em 0 0;
+  }
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.4rem; }
+  h3 { font-size: 1.15rem; }
+  h4 { font-size: 1rem; }
+  h2 + *, h3 + *, h4 + * { margin-top: .6em !important; }
+
+  a { color: var(--fg); text-decoration-color: var(--accent); text-decoration-thickness: 1px; }
+  a:hover { color: var(--accent); }
+
+  strong { color: var(--fg); font-weight: 600; }
+
+  ul, ol { padding-left: 1.4em; }
+  li + li { margin-top: .35em; }
+  li::marker { color: var(--faint); }
+
+  blockquote {
+    padding: .1em 0 .1em 1.1em;
+    border-left: 2px solid var(--accent);
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  img { display: block; margin: 2em auto; border-radius: 6px; }
+  img + em, p > img + br + em { display: block; text-align: center; font-size: .85em; color: var(--muted); }
+
+  hr { border: 0; border-top: 1px solid var(--border); margin: 3em 0; }
+
+  :not(pre) > code {
+    font: .86em/1 var(--font-mono);
+    background: var(--bg-code);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: .15em .35em;
+  }
+
+  pre {
+    font: .84rem/1.65 var(--font-mono);
+    background: var(--bg-code);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+    overflow-x: auto;
+    tab-size: 2;
+  }
+  div.highlighter-rouge { position: relative; }
+  div.highlighter-rouge[class*="language-"]::before {
+    position: absolute; top: .45rem; right: .7rem;
+    font: .68rem/1 var(--font-mono); color: var(--faint);
+  }
+  @each $lang in python, py, bash, sh, js, javascript, ts, typescript, cpp, c, rust, go, yaml, json, html, css, ruby, sql, latex {
+    div.language-#{$lang}::before { content: "#{$lang}"; }
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: .92em; display: block; overflow-x: auto; }
+  th, td { padding: .5em .75em; border-bottom: 1px solid var(--border); text-align: left; }
+  th { font-family: var(--font-sans); font-weight: 600; color: var(--fg); }
+
+  iframe { max-width: 100%; display: block; margin: 2em auto; }
+
+  .katex-display { overflow-x: auto; overflow-y: hidden; padding: .25em 0; }
+  .katex { font-size: 1.05em; }
+}
+
+.prose--post {
+  font-family: var(--font-serif);
+  font-size: 1.16rem;
+  line-height: 1.72;
+  font-optical-sizing: auto;
+}
+
+.prose img.about-photo {
+  float: right;
+  width: 88px;
+  height: 88px;
+  margin: .25rem 0 1rem 1.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+}
+
+// Diagrams with transparent backgrounds (SVG/PNG) stay legible in dark mode.
+@mixin img-dark { .prose img:not(.about-photo) { background: #f4f4f5; padding: .75rem; } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { @include img-dark; } }
+:root[data-theme="dark"] { @include img-dark; }

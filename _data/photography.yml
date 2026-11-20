@@ -1,0 +1,47 @@
+# Photography albums. Tiles on /photography/ are sorted alphabetically by name.
+# Photos are discovered automatically from assets/photos/<slug>/; an album
+# with no photos is hidden. To add photos (and the album page, if new):
+#   bin/add-photos <slug> ~/path/to/*.jpg
+# Optional per album: `description:` (shown on its page) and
+# `cover:` (file name of the tile image; defaults to the first photo).
+categories:
+  - slug: astro
+    name: Astro
+    cover: perseids-over-the-forest.webp
+  - slug: film
+    name: Film
+    description: Shot on 35mm film.
+  - slug: landscape
+    name: Landscape
+    cover: snow-capped-peaks.webp
+  - slug: macro
+    name: Macro
+  - slug: nature
+    name: Nature
+  - slug: portraits
+    name: Portraits
+  - slug: street
+    name: Street
+  - slug: travel
+    name: Travel
+  - slug: wildlife
+    name: Wildlife
+    cover: elephant-dust-bath.webp
+
+# Photos shown per batch on an album page before "Show more" / scroll.
+batch_size: 24
+
+# Optional captions, keyed by file name (without the folder).
+# Anything not listed here simply shows no caption.
+captions:
+  perseids-over-the-forest.webp: Perseid meteor shower over the Milky Way, Germany · August 2026
+  milky-way-rising.webp: The Milky Way rising, Morocco
+  stars-over-the-hills.webp: Stars over the hills, Morocco · December 2025
+  snow-capped-peaks.webp: Snow-capped peaks, Norway · February 2026
+  winter-bay-with-red-cabins.webp: Winter bay with red cabins, Norway · February 2026
+  snowy-mountain-village.webp: Snowy mountain village, Morocco · December 2025
+  kasbah-by-the-river.webp: Aït Benhaddou, Morocco · December 2025
+  blue-monkey.webp: Blue monkey, Tanzania · June 2026
+  lionesses-in-the-grass.webp: Lionesses in the grass, Tanzania · June 2026
+  elephant-and-egret.webp: Elephant and egret, Tanzania · June 2026
+  elephant-dust-bath.webp: Elephant dust bath, Tanzania · June 2026

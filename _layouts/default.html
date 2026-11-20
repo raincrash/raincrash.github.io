@@ -1,24 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-
+{%- assign wide = page.wide -%}
+{%- assign section = page.section -%}
+{%- if page.layout == "gallery" -%}{%- assign wide = true -%}{%- assign section = "photography" -%}{%- endif -%}
+{%- if page.layout == "post" or page.url contains "/blog" -%}{%- assign section = "blog" -%}{%- endif -%}
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
   {% include head.html %}
-
-  <body>
-
-    {% include header.html %}
-
-    <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
-    </div>
-
-    {% if page.comments %}
-    {% include disqus.html %}
-    {% endif %}
-
-    {% include footer.html %}
-
-  </body>
-
+</head>
+<body class="{% if section %}section-{{ section }}{% endif %}">
+  {% include header.html %}
+  <main class="wrap {% if wide %}wrap--wide{% endif %} site-main">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+  <script src="{{ '/assets/js/site.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+</body>
 </html>

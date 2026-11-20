@@ -1,0 +1,26 @@
+// Rouge highlighting, driven by tokens so it follows light/dark.
+:root {
+  --hl-comment: #8a8a93; --hl-keyword: #7c3aed; --hl-string: #15803d;
+  --hl-number: #c2410c; --hl-func: #1d4ed8; --hl-type: #0e7490; --hl-err: #b91c1c;
+}
+@mixin hl-dark {
+  --hl-comment: #6b6b75; --hl-keyword: #c4b5fd; --hl-string: #86efac;
+  --hl-number: #fdba74; --hl-func: #93c5fd; --hl-type: #67e8f9; --hl-err: #fca5a5;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { @include hl-dark; } }
+:root[data-theme="dark"] { @include hl-dark; }
+
+.highlight {
+  color: var(--fg);
+  .c, .ch, .cm, .c1, .cs, .cp, .cpf { color: var(--hl-comment); font-style: italic; }
+  .k, .kc, .kd, .kn, .kp, .kr, .ow { color: var(--hl-keyword); }
+  .kt, .nc, .nn, .bp { color: var(--hl-type); }
+  .s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss { color: var(--hl-string); }
+  .m, .mb, .mf, .mh, .mi, .il, .mo { color: var(--hl-number); }
+  .nf, .fm, .nb, .nd { color: var(--hl-func); }
+  .na, .nt, .nv, .vc, .vg, .vi { color: var(--hl-type); }
+  .o, .p { color: var(--fg-soft); }
+  .err { color: var(--hl-err); }
+  .gd { color: var(--hl-err); }
+  .gi { color: var(--hl-string); }
+}

@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Create a new blog post (or draft) from a template.
+#
+#   bin/new-post "My post title"          → _posts/YYYY-MM-DD-my-post-title.md
+#   bin/new-post --draft "Half an idea"   → _drafts/half-an-idea.md
+#
+# Drafts are only shown when serving with --drafts (bin/serve does this).
+set -euo pipefail
+
+root="$(cd "$(dirname "$0")/.." && pwd)"
+draft=false
+if [ "${1:-}" = "--draft" ]; then draft=true; shift; fi
+title="${1:?Usage: bin/new-post [--draft] \"Title\"}"
+
+slug="$(echo "$title" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-|-$//g')"
+if $draft; then
+  file="$root/_drafts/$slug.md"
+else
+  file="$root/_posts/$(date +%Y-%m-%d)-$slug.md"
+fi
+[ -e "$file" ] && { echo "Already exists: $file" >&2; exit 1; }
+
+cat > "$file" <<EOF
+---
+title: "$title"
+description: One-line summary shown in the post list and link previews.
+tags: []
+---
+
+Write in Markdown. Inline math: \$\$ e^{i\pi} + 1 = 0 \$\$ inside a sentence,
+or a display block on its own lines:
+
+\$\$
+\int_M \Delta f \, dV = 0
+\$\$
+
+\`\`\`python
+print("code blocks are highlighted")
+\`\`\`
+EOF
+
+echo "Created ${file#$root/}"

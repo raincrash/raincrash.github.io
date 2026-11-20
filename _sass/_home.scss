@@ -1,0 +1,71 @@
+// Home: a single quiet screen.
+.section-home .site-main {
+  display: flex;
+  align-items: center;
+  padding-top: 0;
+  padding-bottom: 6vh;
+}
+
+.home { padding: 2rem 0; }
+
+.home__prompt {
+  font-size: .85rem;
+  color: var(--muted);
+  margin: 0 0 1rem;
+  .prompt { color: var(--accent); }
+}
+
+.home__name {
+  font: 700 clamp(2.2rem, 6.5vw, 3.4rem)/1.05 var(--font-sans);
+  letter-spacing: -.035em;
+  margin: 0 0 .9rem;
+}
+
+.home__role {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 2.25rem;
+}
+
+.home__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1.75rem;
+  font-size: .95rem;
+  a {
+    color: var(--fg-soft);
+    text-decoration: none;
+    &::before { content: "\2192\0020"; color: var(--accent); }
+    &:hover { color: var(--accent); }
+  }
+  .home__photo {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.05rem;
+  }
+}
+
+// Shared link chips (about page, 404)
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: 400 .8rem/1 var(--font-mono);
+  a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--fg-soft);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: .55rem .8rem;
+    transition: border-color .15s, color .15s;
+    &:hover { border-color: var(--accent); color: var(--accent); }
+  }
+}
+
+.prose .chips { padding: 0; margin-top: 2rem; }
+.prose .chips li { margin: 0; }

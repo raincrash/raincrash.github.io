@@ -1,105 +1,95 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you: 
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-
-
-# Site Info
+# ─── Site ──────────────────────────────────────────────────────────────
 title: Sricharan Chiruvolu
-email: sricharanchiruvolu@googlemail.com
+tagline: AI Research Lead · Generative AI, Computer Vision & 3D
 description: >-
-  AI Research Engineer working on computer vision, 3D reconstruction, and generative modeling. Based in Munich.
-author_name:        "Sricharan Chiruvolu" # change this to your name
-logo_url:           https://avatars.githubusercontent.com/u/9132273?v=4 # Get it from GitHub API: https://api.github.com/users/<username>
-github_username:    raincrash
-twitter_username:   srchrn
+  AI Research Lead working on generative AI, computer vision and 3D.
+  Writing about machine learning, geometry and building things; photographing the world on film and digital.
+url: "https://sric.me"
+baseurl: ""
+lang: en
+timezone: Europe/Berlin
 
-# Site Settings
-# baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://sric.me" # the base hostname & protocol for your site, e.g. http://example.com
-permalink:          /:title # Post permalink
-timezone:           Europe/Berlin # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-mathjax:            true  # enables support for mathjax - set to 'false' to disable
-social_share_previews: true
+author:
+  name: Sricharan Chiruvolu
+  email: sricharanchiruvolu@googlemail.com
+  avatar: https://avatars.githubusercontent.com/u/9132273?v=4
+  url: https://sric.me/about/
 
-# Site Build
-highlighter:        rouge
-markdown:           kramdown
+# Usernames, used to build links in the templates.
+handles:
+  github: raincrash
+  linkedin: sricharanchiruvolu
+  instagram: shots.by.sri
+
+# ─── SEO (jekyll-seo-tag) ──────────────────────────────────────────────
+# Profiles that are "you" in Google's eyes (JSON-LD sameAs).
+social:
+  name: Sricharan Chiruvolu
+  links:
+    - https://github.com/raincrash
+    - https://www.linkedin.com/in/sricharanchiruvolu/
+    - https://www.instagram.com/shots.by.sri/
+logo: /assets/og/logo.png          # square image for structured data
+twitter:
+  card: summary_large_image        # big preview cards on X, Slack, LinkedIn…
+# Paste your Search Console / Bing verification codes here when you have them:
+# webmaster_verifications:
+#   google: XXXXXXXX
+#   bing: XXXXXXXX
+
+# ─── Blog ──────────────────────────────────────────────────────────────
+permalink: /:title/
+paginate: 8
+paginate_path: /blog/page:num/
+
+# ─── Build ─────────────────────────────────────────────────────────────
+markdown: kramdown
+highlighter: rouge
 kramdown:
-    input:          GFM
+  input: GFM
+  math_engine: mathjax   # emits \( \) / \[ \] which KaTeX renders client-side
+  syntax_highlighter: rouge
+  hard_wrap: false
+
 sass:
-    style:          :compressed
+  sass_dir: _sass
+  style: compressed
 
+theme: null   # no gem theme; everything lives in this repo
 
-defaults:
-  -
-    scope:
-      path: "photography"
-    values:
-      permalink: /:path/:basename:output_ext
-  -
-    scope:
-      path:         ""
-    values:
-      layout:       "null"
-  -
-    scope:
-      type:         "pages"
-    values:
-      layout:       "page"
-  -
-    scope:
-      type:         "posts"
-    values:
-      layout:       "post"
-
-# Build settings
-# theme: minima
-
-# Other Params
-include:            [ "robots.txt" ]
-exclude:            [ "LICENSE", "README.md", "CNAME", "vendor", "Gemfile", "script" ]
 plugins:
   - jekyll-feed
-  - jekyll-remote-theme
   - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-redirect-from
 
-remote_theme: heiswayi/the-plain
+feed:
+  path: feed.xml
 
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+defaults:
+  - scope: { path: "", type: posts }
+    values:
+      layout: post
+      math: true
+      image: /assets/og/default.png
+  - scope: { path: "" }
+    values:
+      layout: page
+      image: /assets/og/default.png
+  - scope: { path: "photography" }
+    values:
+      image: /assets/og/photography.jpg
 
-
-exclude: [LICENSE-CODE.md, LICENSE-IMAGES, README.md, bower.json]
+exclude:
+  - README.md
+  - LICENSE-CODE.md
+  - LICENSE-IMAGES.md
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
+  - .ruby-version
+  - bin/
+  - vendor/
+  - .claude/
+  - .bundle/

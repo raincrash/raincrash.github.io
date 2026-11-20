@@ -1,49 +1,45 @@
 ---
 layout: default
+section: photography
+wide: true
 ---
+{%- assign cat = site.data.photography.categories | where: "slug", page.category | first -%}
+{%- include photos.html category=page.category -%}
+{%- assign batch = site.data.photography.batch_size | default: 24 -%}
+<header class="gallery-header">
+  <div>
+    <p class="gallery-back"><a href="{{ '/photography/' | relative_url }}">← Photography</a></p>
+    <h1>{{ cat.name | default: page.title }}</h1>
+    {% if cat.description %}<p>{{ cat.description }}</p>{% endif %}
+  </div>
+  {% if photos.size > 0 %}<p class="gallery-count mono">{{ photos.size }} photo{% if photos.size != 1 %}s{% endif %}</p>{% endif %}
+</header>
 
-<style>
-  .trip-back {
-    display: inline-block;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #999;
-    text-decoration: none;
-    margin-bottom: 1.2rem;
-    transition: color 0.15s;
-  }
-
-  .trip-back:hover { color: #111; text-decoration: none; }
-
-  .trip-page-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    margin: 0 0 1.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid #e8e8e8;
-  }
-
-  /* Style the description paragraph that precedes the photo grid */
-  .trip-content > p:first-of-type {
-    color: #555;
-    font-size: 0.95rem;
-    line-height: 1.7;
-    max-width: 580px;
-    margin-bottom: 0;
-  }
-
-  .trip-content > p:first-of-type a {
-    color: #333;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-</style>
-
-<a class="trip-back" href="{{ site.baseurl }}/photography">← Photography</a>
-<h1 class="trip-page-title">{{ page.title }}</h1>
-<div class="trip-content">
-  {{ content }}
+{% if photos.size > 0 %}
+<div class="gallery" data-batch="{{ batch }}">
+  {% for p in photos %}
+    {%- assign caption = site.data.photography.captions[p.name] -%}
+    <button type="button" class="gallery__item" data-full="{{ p.path | relative_url }}"
+      data-caption="{{ caption | escape }}" {% if forloop.index > batch %}hidden{% endif %}>
+      <img {% if forloop.index > batch %}data-{% endif %}src="{{ '/assets/photos/' | append: page.category | append: '/thumbs/' | append: p.name | relative_url }}"
+        alt="{{ caption | default: p.basename | replace: '-', ' ' | capitalize | escape }}" {% if forloop.index > 6 %}loading="lazy" {% endif %}decoding="async">
+      {% if caption %}<span class="gallery__caption">{{ caption }}</span>{% endif %}
+    </button>
+  {% endfor %}
 </div>
+{% if photos.size > batch %}
+<div class="gallery-more">
+  <button type="button" class="gallery-more__btn mono">Show more</button>
+</div>
+{% endif %}
+
+<div class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <img class="lightbox__img" alt="">
+  <p class="lightbox__caption"></p>
+  <button type="button" class="lightbox__btn lightbox__close" aria-label="Close">×</button>
+  <button type="button" class="lightbox__btn lightbox__prev" aria-label="Previous photo">←</button>
+  <button type="button" class="lightbox__btn lightbox__next" aria-label="Next photo">→</button>
+</div>
+{% else %}
+<p class="gallery-empty">No photos here yet.</p>
+{% endif %}

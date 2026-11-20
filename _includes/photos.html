@@ -1,0 +1,16 @@
+{%- comment -%}
+  Collects full-size photos under assets/photos/<category>/ (thumbs/ skipped)
+  into `photos`, in file-name order. Pass category="slug" to limit to one
+  category; otherwise categories follow _data/photography.yml order.
+{%- endcomment -%}
+{%- assign photos = "" | split: "" -%}
+{%- for cat in site.data.photography.categories -%}
+  {%- if include.category == nil or include.category == cat.slug -%}
+    {%- for f in site.static_files -%}
+      {%- assign parts = f.path | split: "/" -%}
+      {%- if parts.size == 5 and parts[1] == "assets" and parts[2] == "photos" and parts[3] == cat.slug -%}
+        {%- assign photos = photos | push: f -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}

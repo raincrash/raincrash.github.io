@@ -1,0 +1,92 @@
+// Post lists (home + /blog) and pagination
+.post-list { list-style: none; margin: 0; padding: 0; }
+
+.post-item {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: .25rem 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border);
+  &:last-child { border-bottom: 1px solid var(--border); }
+}
+.post-item__date {
+  font: 400 .8rem/1.9 var(--font-mono);
+  color: var(--faint);
+  white-space: nowrap;
+}
+.post-item__title {
+  font: 600 1.05rem/1.4 var(--font-sans);
+  letter-spacing: -.01em;
+  margin: 0;
+  a { text-decoration: none; }
+}
+.post-item__desc {
+  grid-column: 2;
+  margin: .2rem 0 0;
+  font-size: .92rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.post-list--compact .post-item { padding: .7rem 0; }
+.post-list--compact .post-item__title { font-weight: 500; font-size: 1rem; }
+
+@media (max-width: 30rem) {
+  .post-item { grid-template-columns: 1fr; }
+  .post-item__desc { grid-column: 1; }
+}
+
+.more-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font: 400 .8rem/1 var(--font-mono);
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.blog-header { margin-bottom: 2rem; }
+.blog-header h1, .page__title {
+  font: 700 2rem/1.15 var(--font-sans);
+  letter-spacing: -.03em;
+  margin: 0 0 .5rem;
+}
+.blog-header p { color: var(--muted); margin: 0; }
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2.5rem;
+  font: 400 .85rem/1 var(--font-mono);
+  color: var(--muted);
+  a { text-decoration: none; color: var(--fg-soft); padding: .5rem 0; }
+  .disabled { color: var(--faint); }
+}
+
+// Single post
+.post__header { margin-bottom: 2.5rem; }
+.post__meta {
+  font-size: .8rem;
+  color: var(--muted);
+  margin: 0 0 1rem;
+  .sep { margin: 0 .5rem; color: var(--faint); }
+  .tag { margin-left: .75rem; color: var(--accent); }
+}
+.post__title {
+  font: 700 clamp(1.9rem, 5vw, 2.6rem)/1.12 var(--font-sans);
+  letter-spacing: -.03em;
+  margin: 0;
+}
+.post__lede { font-size: 1.15rem; color: var(--muted); margin: 1rem 0 0; line-height: 1.6; }
+
+.post__nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: .85rem;
+  a { display: flex; flex-direction: column; gap: .35rem; text-decoration: none; color: var(--fg-soft); line-height: 1.4; }
+  a span { color: var(--faint); font-size: .75rem; }
+  .post__nav-next { text-align: right; grid-column: 2; }
+}

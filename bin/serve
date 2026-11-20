@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Run the site locally at http://localhost:4000 with live reload and drafts.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH"
+export LANG="${LANG:-en_US.UTF-8}" LC_ALL="${LC_ALL:-en_US.UTF-8}"
+[ -d vendor/bundle ] || { bundle config set --local path vendor/bundle; bundle install; }
+exec bundle exec jekyll serve --livereload --drafts --port "${PORT:-4000}" "$@"

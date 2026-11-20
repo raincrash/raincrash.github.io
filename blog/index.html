@@ -1,0 +1,35 @@
+---
+layout: default
+title: Blog
+section: blog
+description: Notes on machine learning, 3D vision, geometry and building things, by Sricharan Chiruvolu.
+---
+<header class="blog-header">
+  <h1>Blog</h1>
+  <p>Notes on machine learning, geometry and building things.
+    {% if paginator.total_pages > 1 %}<span class="mono">[{{ paginator.page }}/{{ paginator.total_pages }}]</span>{% endif %}</p>
+</header>
+
+<ul class="post-list">
+  {% for post in paginator.posts %}
+  <li class="post-item">
+    <time class="post-item__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+    <h2 class="post-item__title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+    <p class="post-item__desc">{{ post.description | default: post.excerpt | strip_html | truncatewords: 32 }}</p>
+  </li>
+  {% else %}
+  <li class="post-item"><p class="post-item__desc">No posts yet.</p></li>
+  {% endfor %}
+</ul>
+
+{% if paginator.total_pages > 1 %}
+<nav class="pagination" aria-label="Pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | relative_url }}">← newer</a>
+  {% else %}<span class="disabled">← newer</span>{% endif %}
+  <span>page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | relative_url }}">older →</a>
+  {% else %}<span class="disabled">older →</span>{% endif %}
+</nav>
+{% endif %}
