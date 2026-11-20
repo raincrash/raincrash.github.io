@@ -14,6 +14,13 @@ author:
   email: sricharanchiruvolu@googlemail.com
   avatar: https://avatars.githubusercontent.com/u/9132273?v=4
   url: https://sric.me/about/
+  # Used in the structured-data profile on Home and About (_includes/person-jsonld.html).
+  job_title: AI Research Lead
+  works_for: { name: Beyond Presence, url: "https://www.beyondpresence.ai" }
+  alumni_of: { name: Technical University of Munich, url: "https://www.tum.de" }
+  city: Munich
+  country: DE
+  knows_about: [Generative AI, Computer Vision, 3D Reconstruction, 3D Gaussian Splatting, Digital Humans, Diffusion Models, Photography]
 
 # Usernames, used to build links in the templates.
 handles:
@@ -83,8 +90,8 @@ defaults:
 
 exclude:
   - README.md
-  - LICENSE-CODE.md
-  - LICENSE-IMAGES.md
+  - CLAUDE.md
+  - LICENSE.md
   - CNAME
   - Gemfile
   - Gemfile.lock

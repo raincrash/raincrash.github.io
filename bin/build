@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Production build into _site/ and a quick sanity check. Run before publishing.
+#
+#   bin/build
+#
+# Fails on Jekyll/Sass errors, invalid structured data, or missing images.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+source bin/_env
+
+rm -rf _site
+JEKYLL_ENV=production bundle exec jekyll build --quiet
+
+python3 - <<'PY'
+import json, os, re, sys, glob
+errors = []
+for page in glob.glob("_site/**/*.html", recursive=True):
+    html = open(page, encoding="utf-8").read()
+    if "Redirecting&hellip;" in html:
+        continue
+    for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S):
+        try:
+            json.loads(block)
+        except ValueError as e:
+            errors.append(f"{page}: invalid JSON-LD ({e})")
+    for src in re.findall(r'<img[^>]+?(?:data-)?src="(/[^"]+)"', html):
+        if not os.path.exists("_site" + src.split("?")[0]):
+            errors.append(f"{page}: missing image {src}")
+    if 'class="katex-error"' in html:
+        errors.append(f"{page}: KaTeX error")
+pages = len(glob.glob("_site/**/*.html", recursive=True))
+if errors:
+    print("\n".join(errors)); sys.exit(1)
+print(f"OK: {pages} pages, structured data valid, all local images present.")
+PY

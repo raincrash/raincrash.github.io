@@ -1,3 +1,5 @@
+{%- comment -%} Person profile for search engines. Edit the facts under `author:` in _config.yml. {%- endcomment -%}
+{%- assign a = site.author -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -5,16 +7,16 @@
   "url": {{ page.url | absolute_url | jsonify }},
   "mainEntity": {
     "@type": "Person",
-    "name": {{ site.author.name | jsonify }},
-    "alternateName": ["Sri Chiruvolu", "raincrash"],
+    "name": {{ a.name | jsonify }},
+    "alternateName": ["Sri Chiruvolu", {{ site.handles.github | jsonify }}],
     "url": {{ '/' | absolute_url | jsonify }},
-    "image": {{ site.author.avatar | jsonify }},
-    "jobTitle": "AI Research Lead",
+    "image": {{ a.avatar | jsonify }},
+    "jobTitle": {{ a.job_title | jsonify }},
     "description": {{ site.description | jsonify }},
-    "worksFor": { "@type": "Organization", "name": "Beyond Presence", "url": "https://www.beyondpresence.ai" },
-    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Technical University of Munich", "url": "https://www.tum.de" },
-    "address": { "@type": "PostalAddress", "addressLocality": "Munich", "addressCountry": "DE" },
-    "knowsAbout": ["Generative AI", "Computer Vision", "3D Reconstruction", "3D Gaussian Splatting", "Digital Humans", "Diffusion Models", "Photography"],
+    "worksFor": { "@type": "Organization", "name": {{ a.works_for.name | jsonify }}, "url": {{ a.works_for.url | jsonify }} },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": {{ a.alumni_of.name | jsonify }}, "url": {{ a.alumni_of.url | jsonify }} },
+    "address": { "@type": "PostalAddress", "addressLocality": {{ a.city | jsonify }}, "addressCountry": {{ a.country | jsonify }} },
+    "knowsAbout": {{ a.knows_about | jsonify }},
     "sameAs": {{ site.social.links | jsonify }}
   }
 }

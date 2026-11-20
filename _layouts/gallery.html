@@ -1,8 +1,7 @@
 ---
 layout: default
-section: photography
-wide: true
 ---
+{%- comment -%} One album page. Each photography/<slug>.html sets `category: <slug>`. {%- endcomment -%}
 {%- assign cat = site.data.photography.categories | where: "slug", page.category | first -%}
 {%- include photos.html category=page.category -%}
 {%- assign batch = site.data.photography.batch_size | default: 24 -%}
