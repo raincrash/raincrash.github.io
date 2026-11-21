@@ -53,5 +53,7 @@ Sri exports from Capture One; anything ≥2000 px is fine. Low-res Instagram exp
   Meshcapade (now Epic Games). Studied at TU Munich.
 - Tagline: "AI Research Lead · generative AI, computer vision & 3D · Munich".
 - Photography: film and digital (don't name camera models in copy).
-- Contact: email is the preferred channel. Socials: GitHub, LinkedIn, Instagram
+- Contact: email is the preferred channel; the About page has a Formspree contact form
+  (setup in README, "Contact form"). Website mail uses the `+sricmeweb` plus address and a
+  `[sric.me]` subject prefix. Socials: GitHub, LinkedIn, Instagram
   (@shots.by.sri). No Twitter, no SpeakerDeck.

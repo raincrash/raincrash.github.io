@@ -1,0 +1,32 @@
+{%- comment -%}
+  Contact form (About page). Sends through Formspree when contact.formspree_id
+  is set in _config.yml; otherwise opens the visitor's mail app, pre-filled.
+  Subject: "<subject_prefix> Message from <name>".
+{%- endcomment -%}
+{%- assign c = site.contact -%}
+<form class="contact-form" id="contact"
+  {% if c.formspree_id != "" %}action="https://formspree.io/f/{{ c.formspree_id }}" method="POST"{% endif %}
+  data-mailto="{{ c.to }}" data-prefix="{{ c.subject_prefix }}" novalidate>
+  <div class="contact-form__row">
+    <label>
+      <span>Name</span>
+      <input type="text" name="name" autocomplete="name" required maxlength="100">
+    </label>
+    <label>
+      <span>Email</span>
+      <input type="email" name="email" autocomplete="email" required maxlength="200">
+    </label>
+  </div>
+  <label>
+    <span>Message</span>
+    <textarea name="message" rows="6" required maxlength="5000"></textarea>
+  </label>
+  <input type="hidden" name="_subject" value="{{ c.subject_prefix }} Message from sric.me">
+  <!-- Spam trap: humans never see or fill this. -->
+  <label class="contact-form__trap" aria-hidden="true">Leave empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+  <div class="contact-form__actions">
+    <button type="submit" class="contact-form__send mono">send →</button>
+    <p class="contact-form__status" role="status" aria-live="polite"></p>
+  </div>
+</form>
+<script src="{{ '/assets/js/contact.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

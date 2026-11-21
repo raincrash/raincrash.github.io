@@ -1,0 +1,65 @@
+// Contact form on the About page. Same tokens as the rest of the site.
+.contact-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  font-family: var(--font-sans);
+
+  label { display: grid; gap: .4rem; margin: 0; }
+  label > span {
+    font: 500 .75rem/1 var(--font-mono);
+    color: var(--muted);
+    text-transform: lowercase;
+  }
+
+  input, textarea {
+    width: 100%;
+    font: 400 .95rem/1.5 var(--font-sans);
+    color: var(--fg);
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: .6rem .75rem;
+    transition: border-color .15s, box-shadow .15s;
+    &:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  }
+  textarea { resize: vertical; min-height: 8rem; }
+}
+
+.contact-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  @media (max-width: 30rem) { grid-template-columns: 1fr; }
+}
+
+// Honeypot: off-screen, never visible to people.
+.contact-form__trap { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.contact-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem 1rem;
+}
+
+.contact-form__send {
+  font-size: .85rem;
+  color: var(--bg);
+  background: var(--fg);
+  border: 1px solid var(--fg);
+  border-radius: 6px;
+  padding: .6rem 1.1rem;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+  &:hover { background: var(--accent); border-color: var(--accent); }
+  &:disabled { opacity: .6; cursor: progress; }
+}
+
+.contact-form__status {
+  margin: 0 !important;
+  font-size: .85rem;
+  color: var(--muted);
+  &[data-kind="ok"] { color: var(--accent); }
+  &[data-kind="error"] { color: var(--hl-err); }
+}

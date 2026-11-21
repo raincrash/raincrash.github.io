@@ -22,7 +22,11 @@ digital humans. I studied Computer Science at
 When I'm away from the screen, I'm usually behind a camera: film and digital,
 at home in Munich and on the road. Some of it ends up [here]({{ '/photography/' | relative_url }}).
 
-The best way to reach me is [email](mailto:{{ site.author.email }}).
+## Get in touch
+
+The best way to reach me is email, or drop me a note here.
+
+{% include contact-form.html %}
 
 <ul class="chips about-links">
   <li><a href="mailto:{{ site.author.email }}">email</a></li>

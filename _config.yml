@@ -22,6 +22,14 @@ author:
   country: DE
   knows_about: [Generative AI, Computer Vision, 3D Reconstruction, 3D Gaussian Splatting, Digital Humans, Diffusion Models, Photography]
 
+# Contact form on the About page (Formspree, https://formspree.io).
+# Create a free form there whose recipient is `to`, then paste its ID
+# (the part after formspree.io/f/). Until then the form opens a pre-filled email.
+contact:
+  formspree_id: "xkjrvbaz"
+  to: sricharanchiruvolu+sricmeweb@googlemail.com
+  subject_prefix: "[sric.me]"
+
 # Usernames, used to build links in the templates.
 handles:
   github: raincrash

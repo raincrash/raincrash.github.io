@@ -98,6 +98,22 @@ room for a few hundred. Use `MAX_PX=3000 bin/add-photos …` to go smaller.
 
 Changes to `_config.yml` need a restart of `bin/serve`.
 
+## Contact form
+
+The About page has a contact form (`_includes/contact-form.html`, `assets/js/contact.js`).
+GitHub Pages can't send email, so submissions go through [Formspree](https://formspree.io),
+the usual choice for Jekyll sites (free tier: 50 messages a month, spam filtering).
+
+- Messages go to `sricharanchiruvolu+sricmeweb@googlemail.com` with the subject
+  `[sric.me] Message from <name>`. Reply-To is the visitor's email, so just hit reply.
+  In Gmail, filter on `to:(+sricmeweb)` to label them.
+- **Setup (once)**: sign in at formspree.io, create a form whose recipient is the address
+  above, then put its ID (the part after `formspree.io/f/`) in `_config.yml` under
+  `contact.formspree_id`. Restart `bin/serve`, send a test message, publish.
+- **Until an ID is set**, the form still works: it opens the visitor's own email app with
+  the same address, subject and message filled in.
+- Spam: a hidden `_gotcha` honeypot field plus Formspree's own filtering.
+
 ## How it fits together
 
 ```
