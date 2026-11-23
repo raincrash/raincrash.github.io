@@ -13,6 +13,7 @@
     {{ content }}
   </main>
   {% include footer.html %}
+  <script src="{{ '/assets/js/mesh.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
   <script src="{{ '/assets/js/site.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 </body>
 </html>

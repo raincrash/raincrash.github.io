@@ -1,5 +1,5 @@
-// Photography: same palette and type, but quieter - serif headings,
-// no terminal ornaments, images get the room.
+// Photography: same type and colour as the rest of the site; the photos
+// get the room.
 .gallery-header {
   display: flex;
   flex-wrap: wrap;
@@ -9,9 +9,9 @@
   margin-bottom: 2rem;
 }
 .gallery-header h1 {
-  font: italic 400 clamp(2.2rem, 6vw, 3.2rem)/1.05 var(--font-serif);
-  letter-spacing: -.01em;
-  margin: 0 0 .6rem;
+  font: 700 2rem/1.15 var(--font-sans);
+  letter-spacing: -.03em;
+  margin: 0 0 .5rem;
 }
 .gallery-header p { margin: 0; color: var(--muted); max-width: 34rem; line-height: 1.6; }
 .gallery-header a { color: var(--fg-soft); }
@@ -43,14 +43,14 @@
   gap: 1rem;
   padding-top: .7rem;
 }
-.album__name { font: italic 400 1.3rem/1.2 var(--font-serif); margin: 0; }
-.album__count { font-size: .78rem; color: var(--faint); }
+.album__name { font: 600 1.02rem/1.3 var(--font-sans); letter-spacing: -.01em; margin: 0; }
+.album__count { font: 400 .78rem/1 var(--font-mono); color: var(--muted); }
 
 // Album page
 .gallery-back { margin: 0 0 1rem !important; font-size: .9rem; }
 .gallery-back a { color: var(--muted); text-decoration: none; }
 .gallery-back a:hover { color: var(--accent); }
-.gallery-count { font-size: .8rem; color: var(--faint); margin: 0 0 .6rem !important; }
+.gallery-count { font-size: .8rem; color: var(--muted); margin: 0 0 .6rem !important; }
 
 .gallery-more { display: flex; justify-content: center; margin-top: 2rem; }
 .gallery-more__btn {
@@ -141,7 +141,7 @@
   border-radius: 50%;
   background: rgba(255,255,255,.06);
   color: #e4e4e7;
-  font: 400 1.25rem/1 var(--font-mono);
+  font: 400 1.25rem/1 var(--font-sans);
   cursor: pointer;
   &:hover { background: rgba(255,255,255,.14); }
 }

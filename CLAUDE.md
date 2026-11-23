@@ -13,6 +13,10 @@ This file is the short version plus the rules that matter when an agent edits th
 - Keep `_sass/*.scss` ASCII-only (libsass in GitHub Pages rejects non-ASCII).
 - Only GitHub Pages–whitelisted plugins; no custom Ruby plugins (they don't run on Pages).
 - Don't reintroduce a theme gem; everything lives in this repo.
+- **Design system** (README, "Design"): the wireframe icosahedron is the only mark; one
+  orange accent; Inter for UI/headings, Source Serif for post text, mono only for dates,
+  meta and code. Use the tokens in `_sass/_tokens.scss`, never new colours or fonts.
+  Keep it minimal: no new decorations, per-page logos or terminal-style flourishes.
 
 ## Adding a blog post
 

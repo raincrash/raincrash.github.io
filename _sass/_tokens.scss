@@ -1,5 +1,6 @@
-// Design tokens. One palette for the whole site; the photography section
-// only changes layout width, never colours or type.
+// Design tokens: the single source of colour and type for the whole site.
+// Ink on warm paper, plus one accent (the orange of the wireframe mark's
+// vertices). Sans for UI and headings, serif for reading, mono for meta.
 :root {
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-serif: "Source Serif 4", "Iowan Old Style", Georgia, serif;
@@ -16,9 +17,9 @@
   --muted: #71717a;
   --faint: #a1a1aa;
   --border: #e7e5e4;
-  --accent: #15803d;        // terminal green, used sparingly
-  --accent-soft: #dcfce7;
-  --selection: #bbf7d0;
+  --accent: #c2410c;        // the mark's orange; links, focus, small details
+  --accent-soft: #ffedd5;
+  --selection: #fed7aa;
   --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
 }
 
@@ -31,9 +32,9 @@
   --muted: #8b8b94;
   --faint: #5c5c66;
   --border: #26262b;
-  --accent: #4ade80;
-  --accent-soft: #10291a;
-  --selection: #14532d;
+  --accent: #fb8a5a;
+  --accent-soft: #3a1d10;
+  --selection: #7c2d12;
   --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.4);
 }
 

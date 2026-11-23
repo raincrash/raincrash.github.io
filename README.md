@@ -1,6 +1,6 @@
 # sric.me
 
-Personal site of Sricharan Chiruvolu: a minimal, terminal-flavoured blog and about page,
+Personal site of Sricharan Chiruvolu: a minimal blog and about page,
 plus a photography portfolio. Plain Jekyll, no theme gem, no JavaScript framework.
 GitHub Pages builds it from the **`gh-pages`** branch (the only branch) and serves it at
 <https://sric.me>.
@@ -19,7 +19,7 @@ bin/serve                       # http://localhost:4000 (first run installs gems
 |---|---|
 | Preview locally, live reload | `bin/serve` |
 | New blog post | `bin/new-post "Title"` (or `--draft "Title"`) |
-| Share card for a post | `bin/og-card _posts/<file>.md` |
+| Share card for a post | `bin/og-card _posts/<file>.md` (`--site` redoes the default card) |
 | Add photos to an album | `bin/add-photos <album> ~/path/*.jpg` |
 | Production build + checks | `bin/build` |
 | Publish | commit, then `git push` (to `gh-pages`) |
@@ -114,6 +114,20 @@ the usual choice for Jekyll sites (free tier: 50 messages a month, spam filterin
   the same address, subject and message filled in.
 - Spam: a hidden `_gotcha` honeypot field plus Formspree's own filtering.
 
+## Design
+
+One small system used on every page. Keep new pages and posts inside it.
+
+- **Mark**: a wireframe icosahedron with orange vertices. It turns slowly in the header
+  and, larger, on the home page (`<canvas class="mesh">` + `assets/js/mesh.js`), and is
+  the favicon and the share-card logo. It's the only decoration on the site.
+- **Colour** (`_sass/_tokens.scss`): ink on warm paper, light and dark. One accent,
+  orange (`--accent`), for links, the current nav item, focus rings and the mark's
+  vertices. Readable grey is `--muted`; `--faint` is for lines and decoration only.
+- **Type**: Inter for UI and headings (page titles 2rem/700), Source Serif for reading
+  (posts), JetBrains Mono only for dates, metadata and code.
+- **Layout**: a 44rem text column; photography pages go wide (76rem).
+
 ## How it fits together
 
 ```
@@ -126,6 +140,8 @@ _includes/               head (SEO, fonts, KaTeX) · header · footer
 _sass/                   tokens · base · chrome (header/footer) · home · blog
                          prose (article typography) · syntax · photography
 assets/js/site.js        theme toggle, album batch loading, lightbox
+assets/js/mesh.js        the wireframe mark (header logo, home page)
+assets/favicon.svg       the mark as a static favicon
 assets/og/               share images; og/posts/ per-post cards
 bin/                     serve · build · new-post · og-card · add-photos (+ _env)
 ```

@@ -18,7 +18,7 @@ layout: default
     {{ content | replace: '<img src=', '<img loading="lazy" decoding="async" src=' | replace_first: 'loading="lazy" ', '' }}
   </div>
 
-  <nav class="post__nav mono" aria-label="More posts">
+  <nav class="post__nav" aria-label="More posts">
     {% if page.previous %}
       <a class="post__nav-prev" href="{{ page.previous.url | relative_url }}"><span>← older</span>{{ page.previous.title }}</a>
     {% else %}<span></span>{% endif %}

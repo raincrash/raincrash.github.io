@@ -37,15 +37,6 @@ img { max-width: 100%; height: auto; }
 
 .site-main { flex: 1; padding-top: 3rem; padding-bottom: 5rem; }
 
-.label {
-  font: 500 .75rem/1 var(--font-mono);
-  letter-spacing: .04em;
-  color: var(--muted);
-  text-transform: lowercase;
-  margin: 0 0 1rem;
-  &::before { content: "// "; color: var(--faint); }
-}
-
 .sr-only {
   position: absolute; width: 1px; height: 1px; overflow: hidden;
   clip: rect(0 0 0 0); white-space: nowrap;

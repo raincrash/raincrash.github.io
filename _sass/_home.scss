@@ -1,4 +1,4 @@
-// Home: a single quiet screen.
+// Home and 404: a single quiet screen with the mark.
 .section-home .site-main {
   display: flex;
   align-items: center;
@@ -8,12 +8,8 @@
 
 .home { padding: 2rem 0; }
 
-.home__prompt {
-  font-size: .85rem;
-  color: var(--muted);
-  margin: 0 0 1rem;
-  .prompt { color: var(--accent); }
-}
+.home__mark { width: 128px; height: 128px; display: block; margin: 0 0 1.25rem -12px; }
+@media (max-width: 30rem) { .home__mark { width: 104px; height: 104px; margin-left: -10px; } }
 
 .home__name {
   font: 700 clamp(2.2rem, 6.5vw, 3.4rem)/1.05 var(--font-sans);
@@ -31,22 +27,17 @@
 .home__nav {
   display: flex;
   flex-wrap: wrap;
-  gap: .25rem 1.75rem;
-  font-size: .95rem;
+  gap: .5rem 1.75rem;
+  font-size: 1rem;
   a {
     color: var(--fg-soft);
     text-decoration: none;
-    &::before { content: "\2192\0020"; color: var(--accent); }
+    &::after { content: "\00a0\2192"; color: var(--accent); }
     &:hover { color: var(--accent); }
-  }
-  .home__photo {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 1.05rem;
   }
 }
 
-// Shared link chips (about page, 404)
+// Link chips (About page)
 .chips {
   display: flex;
   flex-wrap: wrap;
@@ -54,14 +45,14 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  font: 400 .8rem/1 var(--font-mono);
+  font: 400 .85rem/1 var(--font-sans);
   a {
     display: inline-block;
     text-decoration: none;
     color: var(--fg-soft);
     border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: .55rem .8rem;
+    border-radius: 999px;
+    padding: .5rem .9rem;
     transition: border-color .15s, color .15s;
     &:hover { border-color: var(--accent); color: var(--accent); }
   }

@@ -1,47 +1,64 @@
 #!/usr/bin/env bash
-# Render a 1200x630 link-preview card for a blog post (Slack, LinkedIn, X...).
+# Render 1200x630 link-preview cards (Slack, LinkedIn, X, WhatsApp...) in the
+# site's style: warm paper, the wireframe mark, the title in Inter.
 #
-#   bin/og-card _posts/2026-03-20-my-post.md
+#   bin/og-card _posts/2026-03-20-my-post.md   # -> assets/og/posts/<slug>.png
+#   bin/og-card --site                         # -> assets/og/default.png + logo.png
 #
-# Writes assets/og/posts/<slug>.png using the post's title and tags, in the
-# site's terminal style. Add `image: /assets/og/posts/<slug>.png` to the post.
+# For a post, add `image: /assets/og/posts/<slug>.png` to its front matter.
 # Needs Google Chrome (macOS).
 set -euo pipefail
 
-post="${1:?Usage: bin/og-card _posts/YYYY-MM-DD-slug.md}"
 root="$(cd "$(dirname "$0")/.." && pwd)"
 chrome="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 [ -x "$chrome" ] || { echo "Google Chrome not found" >&2; exit 1; }
-
-slug="$(basename "$post" .md | sed -E 's/^[0-9]{4}-[0-9]{2}-[0-9]{2}-//')"
-title="$(awk -F': ' '/^title:/ {sub(/^title: */, ""); gsub(/^"|"$/, ""); print; exit}' "$post")"
-tags="$(awk '/^tags:/ {gsub(/^tags: *\[|\]|,/, ""); print; exit}' "$post")"
-date="$(basename "$post" | cut -c1-10)"
+# The favicon, forced to light colours and finer strokes for large sizes.
+mark="$(sed -e 's/@media[^}]*}[^}]*}}//' -e 's/stroke-width="1.1"/stroke-width="0.6"/' -e 's/r="1.5"/r="1.05"/g' "$root/assets/favicon.svg")"
 esc() { printf '%s' "$1" | sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g' -e 's/>/\&gt;/g'; }
-
 tmp="$(mktemp -d)"; trap 'rm -rf "$tmp"' EXIT
-tagline=""; for t in $tags; do tagline="$tagline<span>#$t</span>"; done
-cat > "$tmp/card.html" <<EOF
+
+shoot() { # html-file width height out
+  "$chrome" --headless=new --disable-gpu --hide-scrollbars --force-prefers-reduced-motion \
+    --virtual-time-budget=4000 --window-size="$2,$3" --screenshot="$4" "file://$1" >/dev/null 2>&1
+  echo "Wrote ${4#$root/}"
+}
+
+card() { # kicker title footer-right out
+  cat > "$tmp/card.html" <<EOF
 <!doctype html><html><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=JetBrains+Mono:wght@400;600&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=block" rel="stylesheet">
 <style>
-html,body{margin:0;width:1200px;height:630px;background:#0c0c0e;color:#e4e4e7;font-family:Inter,sans-serif;overflow:hidden}
-.c{box-sizing:border-box;height:100%;padding:72px 96px;display:flex;flex-direction:column;justify-content:space-between;
-background:radial-gradient(900px 500px at 100% 0%,rgba(74,222,128,.10),transparent 60%)}
-.top{display:flex;justify-content:space-between;font:400 26px 'JetBrains Mono',monospace;color:#8b8b94}
-.logo{font-weight:600;color:#e4e4e7}.logo b{color:#4ade80;font-weight:600}
-h1{font-weight:700;font-size:64px;letter-spacing:-2px;line-height:1.08;margin:0;max-width:1000px}
-.f{font:400 24px 'JetBrains Mono',monospace;color:#5c5c66;display:flex;justify-content:space-between}
-.f span+span{margin-left:18px}.tags span{color:#4ade80}
+html,body{margin:0;width:1200px;height:630px;background:#fafaf9;color:#18181b;font-family:Inter,sans-serif;overflow:hidden}
+.c{box-sizing:border-box;height:100%;padding:76px 96px;display:flex;flex-direction:column;justify-content:space-between}
+.top{display:flex;align-items:center;gap:16px;font-weight:600;font-size:30px;letter-spacing:-.01em}
+.top svg{width:64px;height:64px}
+.k{font:400 24px 'JetBrains Mono',monospace;color:#71717a;margin:0 0 18px}
+h1{font-weight:700;font-size:66px;letter-spacing:-2.2px;line-height:1.06;margin:0;max-width:1010px}
+.f{display:flex;justify-content:space-between;font-size:24px;color:#71717a;border-top:2px solid #e7e5e4;padding-top:22px}
+.f b{color:#c2410c;font-weight:400}
 </style></head><body><div class="c">
-<div class="top"><span class="logo"><b>~/</b>raincrash</span><span>$date</span></div>
-<h1>$(esc "$title")</h1>
-<div class="f"><span>sric.me · Sricharan Chiruvolu</span><span class="tags">$tagline</span></div>
+<div class="top">$mark<span>raincrash</span></div>
+<div><p class="k">$(esc "$1")</p><h1>$(esc "$2")</h1></div>
+<div class="f"><span>sric.me · Sricharan Chiruvolu</span><b>$(esc "$3")</b></div>
 </div></body></html>
 EOF
+  shoot "$tmp/card.html" 1200 630 "$4"
+}
 
+if [ "${1:-}" = "--site" ]; then
+  card "AI Research Lead · Munich" "Sricharan Chiruvolu" "musings · photography" "$root/assets/og/default.png"
+  cat > "$tmp/logo.html" <<EOF
+<!doctype html><html><head><style>html,body{margin:0;width:512px;height:512px;background:#fafaf9}
+svg{width:400px;height:400px;margin:56px}</style></head><body>$mark</body></html>
+EOF
+  shoot "$tmp/logo.html" 512 512 "$root/assets/og/logo.png"
+  exit 0
+fi
+
+post="${1:?Usage: bin/og-card _posts/YYYY-MM-DD-slug.md   or   bin/og-card --site}"
+slug="$(basename "$post" .md | sed -E 's/^[0-9]{4}-[0-9]{2}-[0-9]{2}-//')"
+title="$(awk '/^title:/ {sub(/^title: */, ""); gsub(/^"|"$/, ""); print; exit}' "$post")"
+tags="$(awk '/^tags:/ {gsub(/^tags: *\[|\]|,/, ""); print; exit}' "$post")"
+date="$(basename "$post" | cut -c1-10)"
 mkdir -p "$root/assets/og/posts"
-out="$root/assets/og/posts/$slug.png"
-"$chrome" --headless=new --disable-gpu --hide-scrollbars --virtual-time-budget=4000 \
-  --window-size=1200,630 --screenshot="$out" "file://$tmp/card.html" >/dev/null 2>&1
-echo "Wrote ${out#$root/}"
+card "$date · random musings" "$title" "$(echo $tags | sed 's/ / · /g')" "$root/assets/og/posts/$slug.png"

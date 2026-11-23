@@ -6,8 +6,12 @@ section: home
 sitemap: false
 ---
 <section class="home">
-  <p class="home__prompt mono"><span class="prompt">$</span> cd {{ page.url }}</p>
-  <h1 class="home__name">404</h1>
-  <p class="home__role mono">No such file or directory.</p>
-  <nav class="home__nav mono"><a href="{{ '/' | relative_url }}">cd ~</a><a href="{{ '/blog/' | relative_url }}">ls random-musings/</a></nav>
+  <canvas class="mesh home__mark" aria-hidden="true"></canvas>
+  <h1 class="home__name">Page not found</h1>
+  <p class="home__role">That page doesn't exist, or it moved.</p>
+  <nav class="home__nav" aria-label="Sections">
+    <a href="{{ '/' | relative_url }}">Home</a>
+    <a href="{{ '/blog/' | relative_url }}">Random musings</a>
+    <a href="{{ '/photography/' | relative_url }}">Photography</a>
+  </nav>
 </section>

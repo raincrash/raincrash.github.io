@@ -4,12 +4,12 @@ section: home
 ---
 {% include person-jsonld.html %}
 <section class="home">
-  <p class="home__prompt mono"><span class="prompt">$</span> whoami</p>
+  <canvas class="mesh home__mark" aria-hidden="true"></canvas>
   <h1 class="home__name">Sricharan Chiruvolu</h1>
   <p class="home__role">AI Research Lead · generative AI, computer vision &amp; 3D · Munich</p>
-  <nav class="home__nav mono" aria-label="Sections">
-    <a href="{{ '/about/' | relative_url }}">about</a>
-    <a href="{{ '/blog/' | relative_url }}">random musings</a>
-    <a class="home__photo" href="{{ '/photography/' | relative_url }}">photography</a>
+  <nav class="home__nav" aria-label="Sections">
+    <a href="{{ '/about/' | relative_url }}">About</a>
+    <a href="{{ '/blog/' | relative_url }}">Random musings</a>
+    <a href="{{ '/photography/' | relative_url }}">Photography</a>
   </nav>
 </section>

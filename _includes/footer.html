@@ -1,14 +1,14 @@
 <footer class="site-footer">
   <div class="wrap {% if wide %}wrap--wide{% endif %} site-footer__inner">
-    <span class="site-footer__credit mono">
-      <span>© {{ 'now' | date: "%Y" }} {{ site.author.name }}</span>
-      <span class="site-footer__built">made in Munich <span class="emoji">☕️</span> <span class="emoji">🥨</span> <a href="https://claude.ai" rel="noopener">Claude</a> &amp; <a href="https://jekyllrb.com" rel="noopener">Jekyll</a></span>
-    </span>
-    <span class="site-footer__links mono">
-      <a href="https://github.com/{{ site.handles.github }}" rel="noopener">github</a>
-      <a href="https://www.linkedin.com/in/{{ site.handles.linkedin }}/" rel="noopener">linkedin</a>
-      <a href="https://instagram.com/{{ site.handles.instagram }}" rel="noopener">instagram</a>
-      <a href="{{ '/feed.xml' | relative_url }}">rss</a>
-    </span>
+    <div class="site-footer__credit">
+      <p class="site-footer__name">© {{ 'now' | date: "%Y" }} {{ site.author.name }}</p>
+      <p class="site-footer__built">Made in Munich with <span class="emoji">☕️</span> <span class="emoji">🥨</span>, <a href="https://claude.ai" rel="noopener">Claude</a> and <a href="https://jekyllrb.com" rel="noopener">Jekyll</a></p>
+    </div>
+    <nav class="site-footer__links" aria-label="Elsewhere">
+      <a href="https://github.com/{{ site.handles.github }}" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/{{ site.handles.linkedin }}/" rel="noopener">LinkedIn</a>
+      <a href="https://instagram.com/{{ site.handles.instagram }}" rel="noopener">Instagram</a>
+      <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+    </nav>
   </div>
 </footer>

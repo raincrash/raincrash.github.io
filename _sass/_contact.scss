@@ -7,9 +7,8 @@
 
   label { display: grid; gap: .4rem; margin: 0; }
   label > span {
-    font: 500 .75rem/1 var(--font-mono);
-    color: var(--muted);
-    text-transform: lowercase;
+    font: 500 .8rem/1 var(--font-sans);
+    color: var(--fg-soft);
   }
 
   input, textarea {
@@ -44,7 +43,7 @@
 }
 
 .contact-form__send {
-  font-size: .85rem;
+  font: 500 .9rem/1 var(--font-sans);
   color: var(--bg);
   background: var(--fg);
   border: 1px solid var(--fg);
