@@ -11,7 +11,6 @@ timezone: Europe/Berlin
 
 author:
   name: Sricharan Chiruvolu
-  email: sricharanchiruvolu@googlemail.com
   avatar: https://avatars.githubusercontent.com/u/9132273?v=4
   url: https://sric.me/about/
   # Used in the structured-data profile on Home and About (_includes/person-jsonld.html).
@@ -22,12 +21,15 @@ author:
   country: DE
   knows_about: [Generative AI, Computer Vision, 3D Reconstruction, 3D Gaussian Splatting, Digital Humans, Diffusion Models, Photography]
 
-# Contact form on the About page (Formspree, https://formspree.io).
-# Create a free form there whose recipient is `to`, then paste its ID
-# (the part after formspree.io/f/). Until then the form opens a pre-filled email.
+# Contact: the About page email link and form (Formspree, https://formspree.io).
+# The address is split into user + domain and only put together by JavaScript in
+# the browser (assets/js/site.js), so it never appears whole in the HTML or feed.
+# The Formspree form's recipient is set on formspree.io (see README, "Contact form").
+# Without a formspree_id the form opens a pre-filled email to this address instead.
 contact:
   formspree_id: "xkjrvbaz"
-  to: sricharanchiruvolu+sricmeweb@googlemail.com
+  email_user: sricharanchiruvolu+sricme
+  email_domain: gmail.com
   subject_prefix: "[sric.me]"
 
 # Usernames, used to build links in the templates.

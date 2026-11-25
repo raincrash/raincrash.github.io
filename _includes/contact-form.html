@@ -6,7 +6,7 @@
 {%- assign c = site.contact -%}
 <form class="contact-form" id="contact"
   {% if c.formspree_id != "" %}action="https://formspree.io/f/{{ c.formspree_id }}" method="POST"{% endif %}
-  data-mailto="{{ c.to }}" data-prefix="{{ c.subject_prefix }}" novalidate>
+  {% include email-data.html %} data-prefix="{{ c.subject_prefix }}" novalidate>
   <div class="contact-form__row">
     <label>
       <span>Name</span>

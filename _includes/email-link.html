@@ -1,0 +1,2 @@
+{%- comment -%} "email" link; the mailto: href is filled in by assets/js/site.js. {%- endcomment -%}
+<a href="{{ '/about/#contact' | relative_url }}" {% include email-data.html %} data-prefix="{{ site.contact.subject_prefix }} ">email</a>

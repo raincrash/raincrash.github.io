@@ -27,7 +27,7 @@
     // Not configured yet: open the visitor's mail app instead.
     if (!form.getAttribute("action")) {
       var body = field("message").value + "\n\n— " + name + " <" + field("email").value + ">";
-      location.href = "mailto:" + form.dataset.mailto +
+      location.href = "mailto:" + window.siteEmail(form) +
         "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
       say("Opening your email app…");
       return;

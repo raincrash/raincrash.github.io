@@ -1,0 +1,3 @@
+{%- comment -%} The contact address, reversed, as data attributes. assets/js/site.js turns it back into an address. {%- endcomment -%}
+{%- assign c = site.contact -%}
+data-eu="{{ c.email_user | split: '' | reverse | join: '' }}" data-ed="{{ c.email_domain | split: '' | reverse | join: '' }}"

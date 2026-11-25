@@ -29,7 +29,7 @@ The best way to reach me is email, or drop me a note here.
 {% include contact-form.html %}
 
 <ul class="chips about-links">
-  <li><a href="mailto:{{ site.author.email }}">email</a></li>
+  <li>{% include email-link.html %}</li>
   <li><a href="https://github.com/{{ site.handles.github }}" rel="noopener">github</a></li>
   <li><a href="https://www.linkedin.com/in/{{ site.handles.linkedin }}/" rel="noopener">linkedin</a></li>
 </ul>

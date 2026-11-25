@@ -12,6 +12,15 @@
     });
   }
 
+  // ── Email: kept out of the HTML ────────────────────────────────
+  // Elements carry the address reversed in data-eu/data-ed (see
+  // _includes/email-data.html); it is only put together here.
+  function rev(t) { return (t || "").split("").reverse().join(""); }
+  window.siteEmail = function (el) { return rev(el.dataset.eu) + "@" + rev(el.dataset.ed); };
+  document.querySelectorAll("a[data-eu]").forEach(function (a) {
+    a.href = "mailto:" + window.siteEmail(a) + "?subject=" + encodeURIComponent(a.dataset.prefix || "");
+  });
+
   // ── Album page: reveal photos in batches ───────────────────────
   // Only the first batch has real <img src>; later ones carry data-src and
   // are revealed by the "Show more" button or by scrolling near the end.

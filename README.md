@@ -111,7 +111,12 @@ the usual choice for Jekyll sites (free tier: 50 messages a month, spam filterin
   above, then put its ID (the part after `formspree.io/f/`) in `_config.yml` under
   `contact.formspree_id`. Restart `bin/serve`, send a test message, publish.
 - **Until an ID is set**, the form still works: it opens the visitor's own email app with
-  the same address, subject and message filled in.
+  `sricharanchiruvolu+sricme@gmail.com`, the subject and the message filled in.
+- **Email link** (About page): goes to `sricharanchiruvolu+sricme@gmail.com` with the
+  `[sric.me]` subject; filter on `to:(+sricme)`. The address lives in `_config.yml` as
+  `contact.email_user` + `contact.email_domain`, is written into the HTML reversed
+  (`_includes/email-data.html`) and only assembled by `assets/js/site.js`, so scrapers
+  that read the HTML or the feed don't find it.
 - Spam: a hidden `_gotcha` honeypot field plus Formspree's own filtering.
 
 ## Design
