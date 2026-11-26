@@ -13,6 +13,16 @@ description: Photographs by Sricharan Chiruvolu from around the world, on film a
       switch between them depending on the mood. More of it, day to day, on
       <a href="https://instagram.com/{{ site.handles.instagram }}" rel="noopener">Instagram</a>.</p>
   </div>
+  {%- if site.data.photography.cameras %}
+  <dl class="kit" aria-label="Cameras">
+    {%- for group in site.data.photography.cameras %}
+    <div class="kit__row">
+      <dt class="mono">{{ group.label }}</dt>
+      <dd>{% for m in group.models %}<span class="kit__model">{{ m }}</span>{% unless forloop.last %}<span class="kit__sep" aria-hidden="true"> / </span>{% endunless %}{% endfor %}</dd>
+    </div>
+    {%- endfor %}
+  </dl>
+  {%- endif %}
 </header>
 
 <div class="albums">

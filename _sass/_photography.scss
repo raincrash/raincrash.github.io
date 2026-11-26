@@ -16,6 +16,28 @@
 .gallery-header p { margin: 0; color: var(--muted); max-width: 34rem; line-height: 1.6; }
 .gallery-header a { color: var(--fg-soft); }
 
+// Cameras, beside the intro on /photography/
+.kit {
+  margin: 0;
+  display: grid;
+  gap: .4rem;
+  font-size: .875rem;
+  line-height: 1.5;
+}
+.kit__row {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 1rem;
+}
+.kit dt {
+  color: var(--muted);
+  font-size: .75rem;
+  line-height: 1.75;
+}
+.kit dd { margin: 0; color: var(--fg-soft); max-width: 27rem; }
+.kit__model { white-space: nowrap; }
+.kit__sep { color: var(--faint); }
+
 // Album tiles on /photography/
 .albums {
   display: grid;

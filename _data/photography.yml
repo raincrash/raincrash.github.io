@@ -4,6 +4,13 @@
 #   bin/add-photos <slug> ~/path/to/*.jpg
 # Optional per album: `description:` (shown on its page) and
 # `cover:` (file name of the tile image; defaults to the first photo).
+# Cameras listed on /photography/ (top right), in this order.
+cameras:
+  - label: Digital
+    models: [Fujifilm X-T50]
+  - label: Film
+    models: [Leica M2, Rollei 35, Canon Canonet QL17 G-III, Pentax 17]
+
 categories:
   - slug: astro
     name: Astro
