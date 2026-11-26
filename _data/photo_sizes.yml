@@ -11,3 +11,15 @@ wildlife/blue-monkey.webp: { w: 2000, h: 1333, tw: 900, th: 600 }
 wildlife/elephant-and-egret.webp: { w: 2000, h: 1333, tw: 900, th: 600 }
 wildlife/elephant-dust-bath.webp: { w: 2000, h: 1333, tw: 900, th: 600 }
 wildlife/lionesses-in-the-grass.webp: { w: 2000, h: 1333, tw: 900, th: 600 }
+film/boy-at-the-arcade.webp: { w: 3130, h: 2075, tw: 900, th: 597 }
+film/sunset-on-the-bridge.webp: { w: 3840, h: 2561, tw: 900, th: 601 }
+film/waiting-for-the-metro.webp: { w: 2847, h: 1888, tw: 900, th: 597 }
+street/golden-angel.webp: { w: 2880, h: 3840, tw: 675, th: 900 }
+street/red-light-at-the-station.webp: { w: 2881, h: 3840, tw: 676, th: 900 }
+street/river-surfer.webp: { w: 2880, h: 3840, tw: 675, th: 900 }
+street/smoke-in-the-medina.webp: { w: 2560, h: 3840, tw: 600, th: 900 }
+street/swing-carousel.webp: { w: 1536, h: 2048, tw: 675, th: 900 }
+wildlife/leopard-in-an-acacia.webp: { w: 3840, h: 2560, tw: 900, th: 600 }
+wildlife/lion-at-the-waters-edge.webp: { w: 3840, h: 2560, tw: 900, th: 600 }
+wildlife/yawning-cheetah.webp: { w: 3840, h: 2560, tw: 900, th: 600 }
+landscape/alpine-lake-with-islands.webp: { w: 3840, h: 2560, tw: 900, th: 600 }

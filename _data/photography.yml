@@ -17,6 +17,7 @@ categories:
     cover: perseids-over-the-forest.webp
   - slug: film
     name: Film
+    cover: waiting-for-the-metro.webp
     description: Shot on 35mm film.
   - slug: landscape
     name: Landscape
@@ -29,6 +30,7 @@ categories:
     name: Portraits
   - slug: street
     name: Street
+    cover: red-light-at-the-station.webp
   - slug: travel
     name: Travel
   - slug: wildlife
@@ -52,3 +54,15 @@ captions:
   lionesses-in-the-grass.webp: Lionesses in the grass, Tanzania · June 2026
   elephant-and-egret.webp: Elephant and egret, Tanzania · June 2026
   elephant-dust-bath.webp: Elephant dust bath, Tanzania · June 2026
+  lion-at-the-waters-edge.webp: Lion at the water's edge · June 2026
+  yawning-cheetah.webp: Yawning cheetah · June 2026
+  leopard-in-an-acacia.webp: Leopard in an acacia · June 2026
+  alpine-lake-with-islands.webp: Alpine lake with islands · July 2026
+  smoke-in-the-medina.webp: Smoke in the medina · December 2025
+  swing-carousel.webp: Swing carousel · April 2026
+  golden-angel.webp: Golden angel · July 2026
+  river-surfer.webp: River surfer · July 2026
+  red-light-at-the-station.webp: Red light at the station · November 2026
+  boy-at-the-arcade.webp: Boy at the arcade
+  waiting-for-the-metro.webp: Waiting for the metro
+  sunset-on-the-bridge.webp: Sunset on the bridge
