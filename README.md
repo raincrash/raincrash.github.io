@@ -74,8 +74,9 @@ it becomes the alt text and the image URL.
 Then, in `_data/photography.yml`:
 
 - **Albums** are listed under `categories:` (slug + name; optional `description`, `cover`).
-  Tiles are sorted alphabetically and albums with no photos are hidden. To create a new
-  album, add a `slug`/`name` entry before running `bin/add-photos`.
+  Tiles appear in the order listed (strongest album first) and albums with no photos are
+  hidden. Albums are by subject; Film is the one exception. To create a new album, add a
+  `slug`/`name` entry where it should appear before running `bin/add-photos`.
 - **Captions** go under `captions:` as `file-name.webp: Caption, Place · Month Year`.
   Captions are also the alt text and appear in Google Images data.
 

@@ -27,7 +27,7 @@ description: Photographs by Sricharan Chiruvolu from around the world, on film a
 
 <div class="albums">
   {%- assign shown = 0 -%}
-  {%- assign albums = site.data.photography.categories | sort: "name" -%}
+  {%- assign albums = site.data.photography.categories -%}
   {%- for cat in albums -%}
     {%- include photos.html category=cat.slug -%}
     {%- if photos.size > 0 -%}

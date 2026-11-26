@@ -1,4 +1,5 @@
-# Photography albums. Tiles on /photography/ are sorted alphabetically by name.
+# Photography albums. Tiles on /photography/ appear in the order listed here
+# (strongest first); albums are by subject, with Film the one exception.
 # Photos are discovered automatically from assets/photos/<slug>/; an album
 # with no photos is hidden. To add photos (and the album page, if new):
 #   bin/add-photos <slug> ~/path/to/*.jpg
@@ -12,6 +13,15 @@ cameras:
     models: [Leica M2, Rollei 35, Canon Canonet QL17 G-III, Pentax 17]
 
 categories:
+  - slug: wildlife
+    name: Wildlife
+    cover: elephant-dust-bath.webp
+  - slug: landscape
+    name: Landscape
+    cover: snow-capped-peaks.webp
+  - slug: street
+    name: Street
+    cover: red-light-at-the-station.webp
   - slug: astro
     name: Astro
     cover: perseids-over-the-forest.webp
@@ -19,21 +29,11 @@ categories:
     name: Film
     cover: waiting-for-the-metro.webp
     description: Shot on 35mm film.
-  - slug: landscape
-    name: Landscape
-    cover: snow-capped-peaks.webp
+  # No photos yet (hidden until they have some):
   - slug: macro
     name: Macro
-  - slug: nature
-    name: Nature
   - slug: portraits
     name: Portraits
-  - slug: street
-    name: Street
-    cover: red-light-at-the-station.webp
-  - slug: wildlife
-    name: Wildlife
-    cover: elephant-dust-bath.webp
 
 # Photos shown per batch on an album page before "Show more" / scroll.
 batch_size: 24

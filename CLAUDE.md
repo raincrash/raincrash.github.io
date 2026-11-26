@@ -39,7 +39,7 @@ counts or numbers by computing them. Don't reveal internal details about Sri's e
 ## Adding photos
 
 1. Ask which album each photo belongs to if it isn't obvious (albums: Astro, Film,
-   Landscape, Macro, Nature, Portraits, Street, Wildlife; add new ones to
+   Landscape, Macro, Portraits, Street, Wildlife; add new ones to
    `_data/photography.yml` first).
 2. Copy the exports to a temp folder, **renamed to what they show**
    (`elephant-dust-bath.jpg`), then `bin/add-photos <album> <files>`.
