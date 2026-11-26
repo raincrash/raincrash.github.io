@@ -31,8 +31,6 @@ categories:
   - slug: street
     name: Street
     cover: red-light-at-the-station.webp
-  - slug: travel
-    name: Travel
   - slug: wildlife
     name: Wildlife
     cover: elephant-dust-bath.webp
